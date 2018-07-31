@@ -8,3 +8,5 @@
 		<url>http://central.maven.org/maven2/</url>
 	 </mirror>
 ```
+当我们使用一个错误的镜像，或者镜像网络不通的话，创建maven工程会出现问题的，就算是之前的项目打包也会出现问题（如下图）。  
+![image](./wikiImg/maven-mirror-error.PNG) 
