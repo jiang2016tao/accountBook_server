@@ -14,7 +14,7 @@
     </servlet-mapping>
 ```
 load-on-startup：表示启动容器时初始化该Servlet；  
-url-pattern：表示哪些请求交给Spring Web MVC处理， “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求。  
+url-pattern：表示哪些请求交给Spring Web MVC处理， “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求。    
  可选参数 | 解释 
 ------------- | ------------- 
 contextClass | 任意实现了WebApplicationContext接口的类。这个类会初始化该servlet所需要用到的上下文对旬。默认情况下，框架会使用一个XmlWebApplicationContext对象 
