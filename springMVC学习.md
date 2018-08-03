@@ -92,7 +92,7 @@ namespace 与contextConfigLocation的区别:namespace指定的文件，spring-mvc 会去WEB-
 ```
 在访问我写的接口的Url的时候页面报错了（如下图）：  
 
-![image](./wikiImg/spring_mvc_1.PNG)
+![image](./wikiImg/spring_mvc_1.png)
 原来是jar包没有引用，需要引用一下jar包：  
 jackson-core-asl.jar和jackson-mapper-asl.jar，pom文件格式如下：  
 ```xml
