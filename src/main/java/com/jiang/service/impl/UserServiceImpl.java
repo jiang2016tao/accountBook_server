@@ -1,7 +1,9 @@
 package com.jiang.service.impl;
 
-import com.jiang.service.UserService;
+import org.springframework.stereotype.Service;
 
+import com.jiang.service.UserService;
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Override
