@@ -22,6 +22,37 @@ contextClass  | 任意实现了WebApplicationContext接口的类。这个类会初始化该servlet
 contextConfigLocation  | 一个指定了上下文配置路径的字符串，该值会被传入给contextClass所指定的上下文实例对象。文具字符串内可以包含多个字符串，字符串这间以逗号分隔，以此支持你进行多个上下文的配置。在多个上下文中重复定义的bean，以最后加载的bean定义为准 
 namespace  | WebApplicationContext的命名空间。默认是[servlet-name]-servlet   
 ----------
+在项目中就有两种使用情况contextConfigLocation和namespace  
+>
+```xml
+<!--下面这段配置负责初始化Root WebApplicationContext-->
+<servlet>
+  <servlet-name>dispatcher</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  <init-param>
+   <param-name>contextConfigLocation</param-name>
+   <param-value>classpath:/spring-mvc.xml</param-value>
+  </init-param>
+ </servlet>
+ 
+ <!--下面这段配置负责初始化Servlet WebApplication-->
+ <servlet>
+  	<servlet-name>hessian</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+	   <param-name>namespace</param-name>
+	   <param-value>classpath:/hessian-servlet</param-value>
+	  </init-param>
+	  <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>hessian</servlet-name>
+  	<url-pattern>/hessian/*</url-pattern>
+  </servlet-mapping>
+```
+namespace 与contextConfigLocation的区别:namespace指定的文件，spring-mvc 会去WEB-INF/上去寻找，不用加后缀;contextConfigLocation可以指定多个配置文件，用逗号分开。   
+参考[DispatcherServlet 参数 namespace contextConfigLocatoin区别]（https://blog.csdn.net/weixin_36210698/article/details/72629259）
+
 1.SpringMVC环境的搭建
     1.1  在web.xml文件里进行配置。
     ```xml
