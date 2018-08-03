@@ -19,7 +19,7 @@ url-patternё╨╠Мй╬ддп╘гКгС╫╩╦ЬSpring Web MVC╢╕юМё╛ ║╟/║╠ йгсцю╢╤╗рЕд╛хоservletсЁи
 ------------- | ------------- 
 contextClass | хнрБй╣ожакWebApplicationContext╫с©з╣дюЮ║ёуБ╦ЖюЮ╩АЁУй╪╩╞╦цservletкЫпХр╙сц╣╫╣диообнд╤тя╝║ёд╛хогИ©Жобё╛©Р╪э╩Ай╧сцр╩╦ЖXmlWebApplicationContext╤тоС 
 contextConfigLocation | р╩╦Жж╦╤╗акиообндеДжцб╥╬╤╣двж╥Ш╢╝ё╛╦цж╣╩А╠╩╢╚хК╦ЬcontextClassкЫж╦╤╗╣диообндй╣юЩ╤тоС║ёнд╬ъвж╥Ш╢╝дз©ирт╟Э╨╛╤Ю╦Жвж╥Ш╢╝ё╛вж╥Ш╢╝уБ╪Дрт╤╨╨е╥ж╦Тё╛рт╢кж╖ЁждЦ╫Ьпп╤Ю╦Жиообнд╣деДжц║ётз╤Ю╦Жиообнджпжь╦╢╤╗рЕ╣дbeanё╛ртвН╨С╪сть╣дbean╤╗рЕн╙в╪ 
-namespace | WebApplicationContext╣дцЭцШ©у╪Д║ёд╛хойг[servlet-name]-servlet
+namespace | WebApplicationContext╣дцЭцШ©у╪Д║ёд╛хойг[servlet-name]-servlet   
 ----------
 1.SpringMVC╩╥╬Ё╣д╢Н╫╗
     1.1  тзweb.xmlнд╪ЧюО╫ЬппеДжц║ё
