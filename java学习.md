@@ -61,4 +61,22 @@ public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {}
 public Annotation[] getAnnotations() {}
 ```
 前一种方法返回指定类型的注解，后一种方法返回注解到这个元素上的所有注解。
-其实，我就想知道在我们实际项目中如何去判断使用这个注解。  
+其实，我就想知道在我们实际项目中如何去判断使用这个注解。在实际项目中使用注解一定是自己利用反射来做处理。  
+下面红框里就是自己定义的注解的使用例子
+
+![image](./wikiImg/annotation_1.png)
+
+## 直接使用静态方法
+在com.jiang.util.HessianServerScannerConfigurer类中直接导入静态方法，如下：
+```java
+import static org.springframework.util.Assert.notNull;
+```
+这样就可以直接在类里使用该方法了,就像自己的类里有这个方法试的。如下：
+```java
+@Override
+	public void afterPropertiesSet() throws Exception {
+
+		notNull(this.basePackge,"Property 'basePackge' is required ");
+		
+	}
+```

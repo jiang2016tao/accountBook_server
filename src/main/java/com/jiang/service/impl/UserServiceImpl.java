@@ -1,5 +1,6 @@
 package com.jiang.service.impl;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.jiang.service.UserService;
