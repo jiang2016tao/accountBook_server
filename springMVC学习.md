@@ -53,6 +53,93 @@ namespace  | WebApplicationContext的命名空间。默认是[servlet-name]-servlet
 namespace 与contextConfigLocation的区别:namespace指定的文件，spring-mvc 会去WEB-INF/上去寻找，不用加后缀;contextConfigLocation可以指定多个配置文件，用逗号分开。   
 参考[DispatcherServlet 参数 namespace contextConfigLocatoin区别]（https://blog.csdn.net/weixin_36210698/article/details/72629259）
 
+## 认识org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
+参考[Spring生成bean的过程](http://blog.gavinzh.com/2017/11/17/Spring-create-bean/)
+参考[Spring扩展点总结](http://blog.gavinzh.com/2017/11/20/spring-develop-summary/)
+## 认识org.springframework.context.annotation.ClassPathBeanDefinitionScanner
+参考[Spring扫描basePackages注解](https://blog.csdn.net/unix21/article/details/52163789)
+参考[动态注入接口Bean](https://blog.csdn.net/geekjoker/article/details/80497913)
+在spring容器对注解的解析过程中，此类将会扫描。
+>```xml
+<context:component-scan base-package="com.jiang.web.controller"></context:component-scan>
+```
+这样就会调用ClassPathBeanDefinitionScanner的doScan方法。
+![image](./wikiImg/ClassPathBeanDefinitionScanner_1.png)
+其中红线部分是其父类方法org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(String),通过该方法来查找组件.
+![image](./wikiImg/ClassPathBeanDefinitionScanner_2.png)
+其中红线部分方法org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(AnnotatedBeanDefinition)，是对bean定义的一个过滤。源码如下图
+![image](./wikiImg/ClassPathBeanDefinitionScanner_3.png)
+ 原方法这里是判断是否为顶级类和是否是依赖类（即接口会被排除掉-由于我们需要将接口加进来，所以需要覆盖该方法）。可是现在我项目里扫描的是接口，所以需要重写这个方法。  
+其父类ClassPathScanningCandidateComponentProvider里有两个属性 。参考[ClassPathScanningCandidateComponentProvider](https://blog.csdn.net/duzm200542901104/article/details/78909668) 
+```java
+private finalList<TypeFilter>includeFilters=newLinkedList<TypeFilter>();
+private finalList<TypeFilter>excludeFilters=newLinkedList<TypeFilter>();
+```
+一个是包含的过滤器，一个是排除的过滤器，在扫描的时候，首先进行排除过滤器的匹配，如果匹配了结果集中就不包含此类，否则继续包含过滤器的匹配，如果匹配了就包含此类。  
+ClassPathScanningCandidateComponentProvider里的源码resetFilters方法正是设置这两个值的。如下：
+```java
+/**
+	 * Reset the configured type filters.
+	 * @param useDefaultFilters whether to re-register the default filters for
+	 * the {@link Component @Component}, {@link Repository @Repository},
+	 * {@link Service @Service}, and {@link Controller @Controller}
+	 * stereotype annotations
+	 * @see #registerDefaultFilters()
+	 */
+	public void resetFilters(boolean useDefaultFilters) {
+		this.includeFilters.clear();
+		this.excludeFilters.clear();
+		if (useDefaultFilters) {
+			registerDefaultFilters();
+		}
+	}
+```
+
+## 认识org.springframework.beans.factory.annotation.AnnotatedBeanDefinition
+## 认识org.springframework.beans.factory.InitializingBean
+InitializingBean接口为bean提供了初始化方法的方式，它只包括afterPropertiesSet方法，凡是继承该接口的类，在初始化bean的时候会执行该方法。  
+参考[InitializingBean的作用](https://blog.csdn.net/maclaren001/article/details/37039749)
+## 认识org.springframework.web.context.support.XmlWebApplicationContext
+从XML配置文件中装配的，用于WEB环境的ApplicationContext实现类，派生于 {@link org.springframework.web.context.support.XmlWebApplicationContext}。  
+- getParentBeanFactory()获取父容器bean工厂
+- getAutowireCapableBeanFactory 获取一个注册了bean的集合工厂
+
+## 认识org.springframework.beans.factory.support.DefaultListableBeanFactory
+参考[spring beans源码解读之 ioc容器之始祖--DefaultListableBeanFactory](https://www.cnblogs.com/davidwang456/p/4187012.html)  
+（自己的理解）封装spring容器中已经注册好的bean的集合类。
+- 继承自AbstractAutowireCapableBeanFactory的方法  
+
+>提供bean的创建 (有construct方法), 属性注值, 绑定 (包括自动绑定)和初始化.处理运行时bean引用, 解析管理的集合, 调用初始化方法。
+
+## 认识org.springframework.aop.support.AopUtils
+这就是spring的一个工具类：
+>public static Class<?> getTargetClass(Object candidate)这个方法是通过Aop的代理查找到目标类（即真正执行逻辑的类）。  
+参考[getTargetClass说明和使用](http://norther.iteye.com/blog/269763)
+
+## 认识org.springframework.beans.factory.config.RuntimeBeanReference.RuntimeBeanReference(String)
+参考[Spring Bean的解析 RuntimeBeanReference](https://blog.csdn.net/jerryai1/article/details/52980239)  
+在Spring中，Bean的解析阶段，会把xml配制中的<bean>标签解析成Spring中的BeanDefinition对像，我们知道一个bean可能需要依赖其他的bean，在XML配置中可以表现为  
+```xml
+<bean class="foo.bar.xxx">
+   <property name="referBeanName" ref="otherBeanName" />
+</bean>
+```
+在Spring的解析段，其实容器中是没有依赖的Bean的实例的因此，那么这是这个被依赖的Bean如何在BeanDefinition中表示呢？  
+答案就是RuntimeBeanReference，在解析到依赖的Bean的时侯，解析器会依据依赖bean的name创建一个RuntimeBeanReference对像，将这个对像放入BeanDefinition的MutablePropertyValues中。  
+例如：上例中的依赖bean会被解析成  
+```java
+//我们知道foo.bar.xxx 被解析为一个beanDefiniton，假设为xxxBeanDefinition
+reference = new RuntimeBeanReference("otherBeanName");
+xxxBeanDefinition.getPropertyValues().addPropertyValue("referBeanName", reference);
+```
+## 认识org.springframework.beans.factory.annotation.AnnotatedBeanDefinition
+参考[AnnotatedBeanDefinition](https://www.cnblogs.com/davidwang456/p/4199459.html)  
+AnnotationMetadata里部分方法说明：   
+boolean isInterface()返回该类是否是接口。  
+boolean isAbstract()返回该类是否为抽象类。  
+boolean isConcrete()返回该类是否为具体类。  
+boolean isFinal()返回该类是否为final类。  
+为什么堵堵没有项目中使用的beanDefinition.getMetadata().isIndependent()
 1.SpringMVC环境的搭建
     1.1  在web.xml文件里进行配置。
     ```xml
@@ -109,4 +196,41 @@ jackson-core-asl.jar和jackson-mapper-asl.jar，pom文件格式如下：
 ``` 
 
 # spring 与hessian的整合
-在web.xml文件中配置hessian的过滤配置：
+在web.xml文件中配置hessian的过滤配置：  
+# spring问题  
+- 在项目中编写了一个这样的类：
+```java
+package com.jiang.util;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.web.context.support.XmlWebApplicationContext;
+
+public class SpringContext extends XmlWebApplicationContext{
+	private XmlBeanDefinitionReader beanDefinitionReader;
+
+	@Override
+	protected void initBeanDefinitionReader( XmlBeanDefinitionReader beanDefinitionReader ) {
+
+		
+		super.initBeanDefinitionReader( beanDefinitionReader );
+		this.beanDefinitionReader=beanDefinitionReader;
+			
+	}
+
+	
+	public XmlBeanDefinitionReader getBeanDefinitionReader() {
+	
+		return beanDefinitionReader;
+	}
+	
+}
+
+```
+编译器提示报错The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from  	 required .class files，这是由于缺少servlet。  
+引用下面的依赖就可以了:
+```xml
+<dependency>
+	  	<groupId>javax</groupId>
+	  	<artifactId>javaee-api</artifactId>
+	  	<version>7.0</version>
+	  </dependency>
+```
