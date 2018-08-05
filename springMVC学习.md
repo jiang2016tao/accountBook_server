@@ -60,14 +60,14 @@ namespace 与contextConfigLocation的区别:namespace指定的文件，spring-mvc 会去WEB-
 参考[Spring扫描basePackages注解](https://blog.csdn.net/unix21/article/details/52163789)
 参考[动态注入接口Bean](https://blog.csdn.net/geekjoker/article/details/80497913)
 在spring容器对注解的解析过程中，此类将会扫描。
->```xml
+```xml
 <context:component-scan base-package="com.jiang.web.controller"></context:component-scan>
 ```
-这样就会调用ClassPathBeanDefinitionScanner的doScan方法。
+这样就会调用ClassPathBeanDefinitionScanner的doScan方法。  
 ![image](./wikiImg/ClassPathBeanDefinitionScanner_1.png)
-其中红线部分是其父类方法org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(String),通过该方法来查找组件.
+其中红线部分是其父类方法org.springframework.context.annotation.ClasPathScanningCandidateComponentProvider.findCandidateComponents(String),通过该方法来查找组件.  
 ![image](./wikiImg/ClassPathBeanDefinitionScanner_2.png)
-其中红线部分方法org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(AnnotatedBeanDefinition)，是对bean定义的一个过滤。源码如下图
+其中红线部分方法org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(AnnotatedBeanDefinition)，是对bean定义的一个过滤。源码如下图  
 ![image](./wikiImg/ClassPathBeanDefinitionScanner_3.png)
  原方法这里是判断是否为顶级类和是否是依赖类（即接口会被排除掉-由于我们需要将接口加进来，所以需要覆盖该方法）。可是现在我项目里扫描的是接口，所以需要重写这个方法。  
 其父类ClassPathScanningCandidateComponentProvider里有两个属性 。参考[ClassPathScanningCandidateComponentProvider](https://blog.csdn.net/duzm200542901104/article/details/78909668) 
@@ -198,7 +198,8 @@ jackson-core-asl.jar和jackson-mapper-asl.jar，pom文件格式如下：
 # spring 与hessian的整合
 在web.xml文件中配置hessian的过滤配置：  
 # spring问题  
-- 在项目中编写了一个这样的类：
+- 在项目中编写了一个这样的类：  
+参考[The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from required](https://blog.csdn.net/lurao/article/details/50237253)
 ```java
 package com.jiang.util;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
@@ -233,4 +234,34 @@ public class SpringContext extends XmlWebApplicationContext{
 	  	<artifactId>javaee-api</artifactId>
 	  	<version>7.0</version>
 	  </dependency>
+```
+- bean的注入问题  
+在java中使用下面方式进行bean的注入
+```java
+@Autowired
+	private UserService userService;
+```
+在请求是出错了，报注入失败
+
+> org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'testControll': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.jiang.service.UserService com.jiang.web.controller.TestControll.userService; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.jiang.service.UserService] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:292)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1185)
+	
+发现是自己没有对service.impl包下的实现类进行解析，所以在spring容器里没有这样的bean。于是我就在spring-mybatis,xml文件里添加扫描配置。如下：
+```xml
+<context:component-scan base-package="com.jiang.service.impl"></context:component-scan>
+```	
+然后就出现了，后面的问题。
+- 在web.xml里配置了：
+```xml
+<context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:/spring-mybatis.xml</param-value>
+  </context-param>
+```
+发现在启动应用的时候,spring容器没有去加载这个文件,当时好生奇怪.原来还要在.xml文件里加上spring的监听。如下：
+```xml
+<listener>
+ 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ </listener>
 ```
