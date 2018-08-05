@@ -142,21 +142,21 @@ boolean isFinal()返回该类是否为final类。
 为什么堵堵没有项目中使用的beanDefinition.getMetadata().isIndependent()   
 1.SpringMVC环境的搭建  
     
-    > 1.1  在web.xml文件里进行配置。  
-```xml
- <servlet>
-  <servlet-name>dispatcher</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  <init-param>
-   <param-name>contextConfigLocation</param-name>
-   <param-value>classpath:/spring-mvc.xml</param-value>
-  </init-param>
- </servlet>
- <servlet-mapping>
-  <servlet-name>dispatcher</servlet-name>
-  <url-pattern>*.do</url-pattern>
- </servlet-mapping>
-```
+    > 1.1  在web.xml文件里进行配置.
+	```xml
+	 <servlet>
+	  <servlet-name>dispatcher</servlet-name>
+	  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	  <init-param>
+	   <param-name>contextConfigLocation</param-name>
+	   <param-value>classpath:/spring-mvc.xml</param-value>
+	  </init-param>
+	 </servlet>
+	 <servlet-mapping>
+	  <servlet-name>dispatcher</servlet-name>
+	  <url-pattern>*.do</url-pattern>
+	 </servlet-mapping>
+	```
 2.在搭建环境过程中，我使用了如下的配置：  
 ```xml
 <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
