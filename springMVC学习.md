@@ -316,6 +316,8 @@ com.jiang.util.HessianServerScannerConfigurer.HessianClassPathScanner.registerFi
 		<property name="annotationClass" value="com.jiang.util.Hession"></property>
 	</bean>
 ```
+## 客户端  
+客户端只需要指定好url地址，根据com.caucho.hessian.client.HessianProxyFactory的create创建。可以参考项目中的
 # spring问题  
 - 在项目中编写了一个这样的类：  
 参考[The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from required](https://blog.csdn.net/lurao/article/details/50237253)
