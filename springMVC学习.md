@@ -141,7 +141,7 @@ boolean isConcrete()返回该类是否为具体类。
 boolean isFinal()返回该类是否为final类。  
 为什么堵堵没有项目中使用的beanDefinition.getMetadata().isIndependent()
 1.SpringMVC环境的搭建
-    1.1  在web.xml文件里进行配置。
+    1.1  在web.xml文件里进行配置。  
     ```xml
      <servlet>
 	  <servlet-name>dispatcher</servlet-name>
