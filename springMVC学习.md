@@ -148,7 +148,10 @@ boolean isFinal()返回该类是否为final类。
  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
  </listener>
 ```
-ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext.xml的配置信息。因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法  
+ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext.xml的配置信息。因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法    
+## 认识org.springframework.context.ApplicationContextAware  
+参考[org.springframework.context.ApplicationContextAware使用理解](https://www.cnblogs.com/McCa/p/5920865.html)  
+当一个类实现了这个接口（ApplicationContextAware）之后，这个类就可以方便获得ApplicationContext中的所有bean。换句话说，就是这个类可以直接获取spring配置文件中，所有有引用到的bean对象。  
 1.SpringMVC环境的搭建  
     
     > 1.1  在web.xml文件里进行配置.  
@@ -267,7 +270,52 @@ jackson-core-asl.jar和jackson-mapper-asl.jar，pom文件格式如下：
 ``` 
 
 # spring 与hessian的整合
-在web.xml文件中配置hessian的过滤配置：  
+## 服务端
+1.在web.xml文件中配置hessian的过滤配置：  
+```xml
+<servlet>
+  	<servlet-name>hessian</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+	   <param-name>namespace</param-name>
+	   <param-value>classes/hessian-servlet</param-value>
+	  </init-param>
+	  <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>hessian</servlet-name>
+  	<url-pattern>/hessian/*</url-pattern>
+  </servlet-mapping>
+```
+2.hessian-servlet.xml的配置文件,这是一个自己写的对hessian提供服务的类,减去 了需要不停配置的繁琐.这里一个是需要指定的扫描包路径,另一个是我们自定义的注解(凡是需要提供服务的接口都要使用该注解)  
+下面重點講解com.jiang.util.HessianServerScannerConfigurer类。这个类的实现接口如下：　　
+```java
+public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, BeanNameAware, ApplicationContextAware
+```
+该类实现了org.springframework.context.ApplicationContextAware.类会通过下面的方法，将spring应用上下文赋值给类属性applicationContext  
+```java
+@Override
+	public void setApplicationContext( ApplicationContext applicationContext ) throws BeansException {
+
+		this.applicationContext = applicationContext;
+	}
+```
+可以看到实现了org.springframework.beans.factory.InitializingBean，InitializingBean接口为bean提供了初始化方法的方式，它只包括afterPropertiesSet方法，凡是继承该接口的类，在初始化bean的时候会执行该方法。所以spring容器在加载初始化这个bean的时候会先执行afterPropertiesSet方法。　　
+com.jiang.util.HessianServerScannerConfigurer.afterPropertiesSet()这个方法逻辑是在spring容器的应用里找到被注入的bean，然后遍历bean,找到bean实现的接口集合，检查接口是否有我们自定义的注解。如果有就将该bean放入map里。  
+该类实现了org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor接口.接口里的postProcessBeanDefinitionRegistry方法可以修改在BeanDefinitionRegistry接口实现类中注册的任意BeanDefinition，也可以增加和删除BeanDefinition。原因是这个方法执行前所有常规的BeanDefinition已经被加载到BeanDefinitionRegistry接口实现类中，但还没有bean被实例化。  
+com.jiang.util.HessianServerScannerConfigurer.postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)这个方法里会有一个自定义的扫描类,  
+```java
+private class HessianClassPathScanner extends ClassPathBeanDefinitionScanner
+```
+HessianClassPathScanner类继承了org.springframework.context.annotation.ClassPathBeanDefinitionScanner类，我重写isCandidateComponent方法，因为默认的方法过滤了接口类型，而我这里需要的就是接口，所以重写了。  重写了doScan方法，遍历BeanDefinitionHolder集合,修改GenericBeanDefinition信息,使其成为hessian服务.
+com.jiang.util.HessianServerScannerConfigurer.HessianClassPathScanner.registerFilters()，注册扫描时的一些过滤器，确保被正确的扫描。
+3.编写接口服务和实现类（具体查看项目中的使用）
+```xml
+<bean class="com.jiang.util.HessianServerScannerConfigurer">
+		<property name="basePackge" value="com.jiang.service"></property>
+		<property name="annotationClass" value="com.jiang.util.Hession"></property>
+	</bean>
+```
 # spring问题  
 - 在项目中编写了一个这样的类：  
 参考[The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from required](https://blog.csdn.net/lurao/article/details/50237253)
