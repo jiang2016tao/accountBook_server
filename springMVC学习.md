@@ -140,6 +140,15 @@ boolean isAbstract()返回该类是否为抽象类。
 boolean isConcrete()返回该类是否为具体类。  
 boolean isFinal()返回该类是否为final类。  
 为什么堵堵没有项目中使用的beanDefinition.getMetadata().isIndependent()   
+## 认识org.springframework.web.context.ContextLoaderListener  
+参考[Spring的初始化：org.springframework.web.context.ContextLoaderListener](https://www.cnblogs.com/wuchaodzxx/p/6038895.html)  
+在web.xml中配置：  
+```xml
+<listener>
+ 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ </listener>
+```
+ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext.xml的配置信息。因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法  
 1.SpringMVC环境的搭建  
     
     > 1.1  在web.xml文件里进行配置.  
@@ -157,6 +166,67 @@ boolean isFinal()返回该类是否为final类。
 	  <url-pattern>*.do</url-pattern>
 	 </servlet-mapping>
 	```
+	
+	>1.2  在spring-mvc.xml里配置。  
+	>> 1.2.1 需要spring扫描的包（一般是controller了）。  
+	<context:component-scan base-package="com.jiang.web.controller"></context:component-scan>  
+	>> 1.2.2 其它一些配置信息.  
+	```xml
+	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
+	 <bean id="mappingJacksonHttpMessageConverter"
+	  class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	  <property name="supportedMediaTypes">
+	   <list>
+	    <value>text/html;charset=UTF-8</value>
+	   </list>
+	  </property>
+	 </bean>
+	 <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
+	 <bean
+	  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	  <property name="messageConverters">
+	   <list>
+	    <ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSON转换器 -->
+	   </list>
+	  </property>
+	 </bean>
+	 <!-- 定义跳转的文件的前后缀 ，视图模式配置-->
+	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	  <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+	  <property name="prefix" value="/WEB-INF/jsp/" />
+	  <property name="suffix" value=".jsp" />
+	 </bean>
+	```  
+	> 1.3 编写Controller的java类.  
+	````java
+	package com.jiang.web.controller;
+
+		import org.springframework.beans.factory.annotation.Autowired;
+		import org.springframework.stereotype.Controller;
+		import org.springframework.web.bind.annotation.RequestMapping;
+		import org.springframework.web.bind.annotation.ResponseBody;
+		
+		import com.jiang.service.UserService;
+		
+		@Controller
+		@RequestMapping(value="/")
+		public class TestControll {
+		
+			@Autowired
+			private UserService userService;
+			
+			@RequestMapping(value="testVisit")
+			@ResponseBody
+			public String testVisit(){
+				userService.login();
+				return "accountBook_server activty";
+			}
+		}
+	
+	``` 
+	> 1.4 启动容器,在浏览器输入地址即可.  
+	
+注意可能会出现  [注入bean失败的问题](#notBean)  
 2.在搭建环境过程中，我使用了如下的配置：  
 ```xml
 <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
@@ -236,6 +306,7 @@ public class SpringContext extends XmlWebApplicationContext{
 	  	<version>7.0</version>
 	  </dependency>
 ```
+<a name="notBean"></a>
 - bean的注入问题  
 在java中使用下面方式进行bean的注入
 ```java
