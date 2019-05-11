@@ -1,7 +1,7 @@
-# SpringMVCÑ§Ï°
-## ÈÏÊ¶org.springframework.web.servlet.DispatcherServlet
-²Î¿¼[DispatcherServlet](http://sishuok.com/forum/blogPost/list/5188.html)  
-ÔÚweb.xmlÖĞµÄÅäÖÃ
+# SpringMVCå­¦ä¹ 
+## è®¤è¯†org.springframework.web.servlet.DispatcherServlet
+å‚è€ƒ[DispatcherServlet](http://sishuok.com/forum/blogPost/list/5188.html)  
+åœ¨web.xmlä¸­çš„é…ç½®
 ```xml
 <servlet>
         <servlet-name>chapter2</servlet-name>
@@ -13,19 +13,19 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 ```
-load-on-startup£º±íÊ¾Æô¶¯ÈİÆ÷Ê±³õÊ¼»¯¸ÃServlet£»  
-url-pattern£º±íÊ¾ÄÄĞ©ÇëÇó½»¸øSpring Web MVC´¦Àí£¬ ¡°/¡± ÊÇÓÃÀ´¶¨ÒåÄ¬ÈÏservletÓ³ÉäµÄ¡£Ò²¿ÉÒÔÈç¡°*.html¡±±íÊ¾À¹½ØËùÓĞÒÔhtmlÎªÀ©Õ¹ÃûµÄÇëÇó¡£    
+load-on-startupï¼šè¡¨ç¤ºå¯åŠ¨å®¹å™¨æ—¶åˆå§‹åŒ–è¯¥Servletï¼›  
+url-patternï¼šè¡¨ç¤ºå“ªäº›è¯·æ±‚äº¤ç»™Spring Web MVCå¤„ç†ï¼Œ â€œ/â€ æ˜¯ç”¨æ¥å®šä¹‰é»˜è®¤servletæ˜ å°„çš„ã€‚ä¹Ÿå¯ä»¥å¦‚â€œ*.htmlâ€è¡¨ç¤ºæ‹¦æˆªæ‰€æœ‰ä»¥htmlä¸ºæ‰©å±•åçš„è¯·æ±‚ã€‚    
 
- ¿ÉÑ¡²ÎÊı   | ½âÊÍ 
+ å¯é€‰å‚æ•°   | è§£é‡Š 
 ------------- | ------------- 
-contextClass  | ÈÎÒâÊµÏÖÁËWebApplicationContext½Ó¿ÚµÄÀà¡£Õâ¸öÀà»á³õÊ¼»¯¸ÃservletËùĞèÒªÓÃµ½µÄÉÏÏÂÎÄ¶ÔÑ®¡£Ä¬ÈÏÇé¿öÏÂ£¬¿ò¼Ü»áÊ¹ÓÃÒ»¸öXmlWebApplicationContext¶ÔÏó 
-contextConfigLocation  | Ò»¸öÖ¸¶¨ÁËÉÏÏÂÎÄÅäÖÃÂ·¾¶µÄ×Ö·û´®£¬¸ÃÖµ»á±»´«Èë¸øcontextClassËùÖ¸¶¨µÄÉÏÏÂÎÄÊµÀı¶ÔÏó¡£ÎÄ¾ß×Ö·û´®ÄÚ¿ÉÒÔ°üº¬¶à¸ö×Ö·û´®£¬×Ö·û´®Õâ¼äÒÔ¶ººÅ·Ö¸ô£¬ÒÔ´ËÖ§³ÖÄã½øĞĞ¶à¸öÉÏÏÂÎÄµÄÅäÖÃ¡£ÔÚ¶à¸öÉÏÏÂÎÄÖĞÖØ¸´¶¨ÒåµÄbean£¬ÒÔ×îºó¼ÓÔØµÄbean¶¨ÒåÎª×¼ 
-namespace  | WebApplicationContextµÄÃüÃû¿Õ¼ä¡£Ä¬ÈÏÊÇ[servlet-name]-servlet   
+contextClass  | ä»»æ„å®ç°äº†WebApplicationContextæ¥å£çš„ç±»ã€‚è¿™ä¸ªç±»ä¼šåˆå§‹åŒ–è¯¥servletæ‰€éœ€è¦ç”¨åˆ°çš„ä¸Šä¸‹æ–‡å¯¹æ—¬ã€‚é»˜è®¤æƒ…å†µä¸‹ï¼Œæ¡†æ¶ä¼šä½¿ç”¨ä¸€ä¸ªXmlWebApplicationContextå¯¹è±¡ 
+contextConfigLocation  | ä¸€ä¸ªæŒ‡å®šäº†ä¸Šä¸‹æ–‡é…ç½®è·¯å¾„çš„å­—ç¬¦ä¸²ï¼Œè¯¥å€¼ä¼šè¢«ä¼ å…¥ç»™contextClassæ‰€æŒ‡å®šçš„ä¸Šä¸‹æ–‡å®ä¾‹å¯¹è±¡ã€‚æ–‡å…·å­—ç¬¦ä¸²å†…å¯ä»¥åŒ…å«å¤šä¸ªå­—ç¬¦ä¸²ï¼Œå­—ç¬¦ä¸²è¿™é—´ä»¥é€—å·åˆ†éš”ï¼Œä»¥æ­¤æ”¯æŒä½ è¿›è¡Œå¤šä¸ªä¸Šä¸‹æ–‡çš„é…ç½®ã€‚åœ¨å¤šä¸ªä¸Šä¸‹æ–‡ä¸­é‡å¤å®šä¹‰çš„beanï¼Œä»¥æœ€ååŠ è½½çš„beanå®šä¹‰ä¸ºå‡† 
+namespace  | WebApplicationContextçš„å‘½åç©ºé—´ã€‚é»˜è®¤æ˜¯[servlet-name]-servlet   
 ----------
-ÔÚÏîÄ¿ÖĞ¾ÍÓĞÁ½ÖÖÊ¹ÓÃÇé¿öcontextConfigLocationºÍnamespace  
+åœ¨é¡¹ç›®ä¸­å°±æœ‰ä¸¤ç§ä½¿ç”¨æƒ…å†µcontextConfigLocationå’Œnamespace  
 >
 ```xml
-<!--ÏÂÃæÕâ¶ÎÅäÖÃ¸ºÔğ³õÊ¼»¯Root WebApplicationContext-->
+<!--ä¸‹é¢è¿™æ®µé…ç½®è´Ÿè´£åˆå§‹åŒ–Root WebApplicationContext-->
 <servlet>
   <servlet-name>dispatcher</servlet-name>
   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -35,7 +35,7 @@ namespace  | WebApplicationContextµÄÃüÃû¿Õ¼ä¡£Ä¬ÈÏÊÇ[servlet-name]-servlet
   </init-param>
  </servlet>
  
- <!--ÏÂÃæÕâ¶ÎÅäÖÃ¸ºÔğ³õÊ¼»¯Servlet WebApplication-->
+ <!--ä¸‹é¢è¿™æ®µé…ç½®è´Ÿè´£åˆå§‹åŒ–Servlet WebApplication-->
  <servlet>
   	<servlet-name>hessian</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -50,33 +50,33 @@ namespace  | WebApplicationContextµÄÃüÃû¿Õ¼ä¡£Ä¬ÈÏÊÇ[servlet-name]-servlet
   	<url-pattern>/hessian/*</url-pattern>
   </servlet-mapping>
 ```
-namespace ÓëcontextConfigLocationµÄÇø±ğ:namespaceÖ¸¶¨µÄÎÄ¼ş£¬spring-mvc »áÈ¥WEB-INF/ÉÏÈ¥Ñ°ÕÒ£¬²»ÓÃ¼Óºó×º;contextConfigLocation¿ÉÒÔÖ¸¶¨¶à¸öÅäÖÃÎÄ¼ş£¬ÓÃ¶ººÅ·Ö¿ª¡£   
-²Î¿¼[DispatcherServlet ²ÎÊı namespace contextConfigLocatoinÇø±ğ]£¨https://blog.csdn.net/weixin_36210698/article/details/72629259£©
+namespace ä¸contextConfigLocationçš„åŒºåˆ«:namespaceæŒ‡å®šçš„æ–‡ä»¶ï¼Œspring-mvc ä¼šå»WEB-INF/ä¸Šå»å¯»æ‰¾ï¼Œä¸ç”¨åŠ åç¼€;contextConfigLocationå¯ä»¥æŒ‡å®šå¤šä¸ªé…ç½®æ–‡ä»¶ï¼Œç”¨é€—å·åˆ†å¼€ã€‚   
+å‚è€ƒ[DispatcherServlet å‚æ•° namespace contextConfigLocatoinåŒºåˆ«]ï¼ˆhttps://blog.csdn.net/weixin_36210698/article/details/72629259ï¼‰
 
-## ÈÏÊ¶org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
-²Î¿¼[SpringÉú³ÉbeanµÄ¹ı³Ì](http://blog.gavinzh.com/2017/11/17/Spring-create-bean/)
-²Î¿¼[SpringÀ©Õ¹µã×Ü½á](http://blog.gavinzh.com/2017/11/20/spring-develop-summary/)
-## ÈÏÊ¶org.springframework.context.annotation.ClassPathBeanDefinitionScanner
-²Î¿¼[SpringÉ¨ÃèbasePackages×¢½â](https://blog.csdn.net/unix21/article/details/52163789)
-²Î¿¼[¶¯Ì¬×¢Èë½Ó¿ÚBean](https://blog.csdn.net/geekjoker/article/details/80497913)
-ÔÚspringÈİÆ÷¶Ô×¢½âµÄ½âÎö¹ı³ÌÖĞ£¬´ËÀà½«»áÉ¨Ãè¡£
+## è®¤è¯†org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
+å‚è€ƒ[Springç”Ÿæˆbeançš„è¿‡ç¨‹](http://blog.gavinzh.com/2017/11/17/Spring-create-bean/)
+å‚è€ƒ[Springæ‰©å±•ç‚¹æ€»ç»“](http://blog.gavinzh.com/2017/11/20/spring-develop-summary/)
+## è®¤è¯†org.springframework.context.annotation.ClassPathBeanDefinitionScanner
+å‚è€ƒ[Springæ‰«æbasePackagesæ³¨è§£](https://blog.csdn.net/unix21/article/details/52163789)
+å‚è€ƒ[åŠ¨æ€æ³¨å…¥æ¥å£Bean](https://blog.csdn.net/geekjoker/article/details/80497913)
+åœ¨springå®¹å™¨å¯¹æ³¨è§£çš„è§£æè¿‡ç¨‹ä¸­ï¼Œæ­¤ç±»å°†ä¼šæ‰«æã€‚
 ```xml
 <context:component-scan base-package="com.jiang.web.controller"></context:component-scan>
 ```
-ÕâÑù¾Í»áµ÷ÓÃClassPathBeanDefinitionScannerµÄdoScan·½·¨¡£  
+è¿™æ ·å°±ä¼šè°ƒç”¨ClassPathBeanDefinitionScannerçš„doScanæ–¹æ³•ã€‚  
 ![image](./wikiImg/ClassPathBeanDefinitionScanner_1.png)
-ÆäÖĞºìÏß²¿·ÖÊÇÆä¸¸Àà·½·¨org.springframework.context.annotation.ClasPathScanningCandidateComponentProvider.findCandidateComponents(String),Í¨¹ı¸Ã·½·¨À´²éÕÒ×é¼ş.  
+å…¶ä¸­çº¢çº¿éƒ¨åˆ†æ˜¯å…¶çˆ¶ç±»æ–¹æ³•org.springframework.context.annotation.ClasPathScanningCandidateComponentProvider.findCandidateComponents(String),é€šè¿‡è¯¥æ–¹æ³•æ¥æŸ¥æ‰¾ç»„ä»¶.  
 ![image](./wikiImg/ClassPathBeanDefinitionScanner_2.png)
-ÆäÖĞºìÏß²¿·Ö·½·¨org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(AnnotatedBeanDefinition)£¬ÊÇ¶Ôbean¶¨ÒåµÄÒ»¸ö¹ıÂË¡£Ô´ÂëÈçÏÂÍ¼  
+å…¶ä¸­çº¢çº¿éƒ¨åˆ†æ–¹æ³•org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(AnnotatedBeanDefinition)ï¼Œæ˜¯å¯¹beanå®šä¹‰çš„ä¸€ä¸ªè¿‡æ»¤ã€‚æºç å¦‚ä¸‹å›¾  
 ![image](./wikiImg/ClassPathBeanDefinitionScanner_3.png)
- Ô­·½·¨ÕâÀïÊÇÅĞ¶ÏÊÇ·ñÎª¶¥¼¶ÀàºÍÊÇ·ñÊÇÒÀÀµÀà£¨¼´½Ó¿Ú»á±»ÅÅ³ıµô-ÓÉÓÚÎÒÃÇĞèÒª½«½Ó¿Ú¼Ó½øÀ´£¬ËùÒÔĞèÒª¸²¸Ç¸Ã·½·¨£©¡£¿ÉÊÇÏÖÔÚÎÒÏîÄ¿ÀïÉ¨ÃèµÄÊÇ½Ó¿Ú£¬ËùÒÔĞèÒªÖØĞ´Õâ¸ö·½·¨¡£  
-Æä¸¸ÀàClassPathScanningCandidateComponentProviderÀïÓĞÁ½¸öÊôĞÔ ¡£²Î¿¼[ClassPathScanningCandidateComponentProvider](https://blog.csdn.net/duzm200542901104/article/details/78909668) 
+ åŸæ–¹æ³•è¿™é‡Œæ˜¯åˆ¤æ–­æ˜¯å¦ä¸ºé¡¶çº§ç±»å’Œæ˜¯å¦æ˜¯ä¾èµ–ç±»ï¼ˆå³æ¥å£ä¼šè¢«æ’é™¤æ‰-ç”±äºæˆ‘ä»¬éœ€è¦å°†æ¥å£åŠ è¿›æ¥ï¼Œæ‰€ä»¥éœ€è¦è¦†ç›–è¯¥æ–¹æ³•ï¼‰ã€‚å¯æ˜¯ç°åœ¨æˆ‘é¡¹ç›®é‡Œæ‰«æçš„æ˜¯æ¥å£ï¼Œæ‰€ä»¥éœ€è¦é‡å†™è¿™ä¸ªæ–¹æ³•ã€‚  
+å…¶çˆ¶ç±»ClassPathScanningCandidateComponentProvideré‡Œæœ‰ä¸¤ä¸ªå±æ€§ ã€‚å‚è€ƒ[ClassPathScanningCandidateComponentProvider](https://blog.csdn.net/duzm200542901104/article/details/78909668) 
 ```java
 private finalList<TypeFilter>includeFilters=newLinkedList<TypeFilter>();
 private finalList<TypeFilter>excludeFilters=newLinkedList<TypeFilter>();
 ```
-Ò»¸öÊÇ°üº¬µÄ¹ıÂËÆ÷£¬Ò»¸öÊÇÅÅ³ıµÄ¹ıÂËÆ÷£¬ÔÚÉ¨ÃèµÄÊ±ºò£¬Ê×ÏÈ½øĞĞÅÅ³ı¹ıÂËÆ÷µÄÆ¥Åä£¬Èç¹ûÆ¥ÅäÁË½á¹û¼¯ÖĞ¾Í²»°üº¬´ËÀà£¬·ñÔò¼ÌĞø°üº¬¹ıÂËÆ÷µÄÆ¥Åä£¬Èç¹ûÆ¥ÅäÁË¾Í°üº¬´ËÀà¡£  
-ClassPathScanningCandidateComponentProviderÀïµÄÔ´ÂëresetFilters·½·¨ÕıÊÇÉèÖÃÕâÁ½¸öÖµµÄ¡£ÈçÏÂ£º
+ä¸€ä¸ªæ˜¯åŒ…å«çš„è¿‡æ»¤å™¨ï¼Œä¸€ä¸ªæ˜¯æ’é™¤çš„è¿‡æ»¤å™¨ï¼Œåœ¨æ‰«æçš„æ—¶å€™ï¼Œé¦–å…ˆè¿›è¡Œæ’é™¤è¿‡æ»¤å™¨çš„åŒ¹é…ï¼Œå¦‚æœåŒ¹é…äº†ç»“æœé›†ä¸­å°±ä¸åŒ…å«æ­¤ç±»ï¼Œå¦åˆ™ç»§ç»­åŒ…å«è¿‡æ»¤å™¨çš„åŒ¹é…ï¼Œå¦‚æœåŒ¹é…äº†å°±åŒ…å«æ­¤ç±»ã€‚  
+ClassPathScanningCandidateComponentProvideré‡Œçš„æºç resetFiltersæ–¹æ³•æ­£æ˜¯è®¾ç½®è¿™ä¸¤ä¸ªå€¼çš„ã€‚å¦‚ä¸‹ï¼š
 ```java
 /**
 	 * Reset the configured type filters.
@@ -95,66 +95,66 @@ ClassPathScanningCandidateComponentProviderÀïµÄÔ´ÂëresetFilters·½·¨ÕıÊÇÉèÖÃÕâÁ½¸
 	}
 ```
 
-## ÈÏÊ¶org.springframework.beans.factory.annotation.AnnotatedBeanDefinition
-## ÈÏÊ¶org.springframework.beans.factory.InitializingBean
-InitializingBean½Ó¿ÚÎªbeanÌá¹©ÁË³õÊ¼»¯·½·¨µÄ·½Ê½£¬ËüÖ»°üÀ¨afterPropertiesSet·½·¨£¬·²ÊÇ¼Ì³Ğ¸Ã½Ó¿ÚµÄÀà£¬ÔÚ³õÊ¼»¯beanµÄÊ±ºò»áÖ´ĞĞ¸Ã·½·¨¡£  
-²Î¿¼[InitializingBeanµÄ×÷ÓÃ](https://blog.csdn.net/maclaren001/article/details/37039749)
-## ÈÏÊ¶org.springframework.web.context.support.XmlWebApplicationContext
-´ÓXMLÅäÖÃÎÄ¼şÖĞ×°ÅäµÄ£¬ÓÃÓÚWEB»·¾³µÄApplicationContextÊµÏÖÀà£¬ÅÉÉúÓÚ {@link org.springframework.web.context.support.XmlWebApplicationContext}¡£  
-- getParentBeanFactory()»ñÈ¡¸¸ÈİÆ÷bean¹¤³§
-- getAutowireCapableBeanFactory »ñÈ¡Ò»¸ö×¢²áÁËbeanµÄ¼¯ºÏ¹¤³§
+## è®¤è¯†org.springframework.beans.factory.annotation.AnnotatedBeanDefinition
+## è®¤è¯†org.springframework.beans.factory.InitializingBean
+InitializingBeanæ¥å£ä¸ºbeanæä¾›äº†åˆå§‹åŒ–æ–¹æ³•çš„æ–¹å¼ï¼Œå®ƒåªåŒ…æ‹¬afterPropertiesSetæ–¹æ³•ï¼Œå‡¡æ˜¯ç»§æ‰¿è¯¥æ¥å£çš„ç±»ï¼Œåœ¨åˆå§‹åŒ–beançš„æ—¶å€™ä¼šæ‰§è¡Œè¯¥æ–¹æ³•ã€‚  
+å‚è€ƒ[InitializingBeançš„ä½œç”¨](https://blog.csdn.net/maclaren001/article/details/37039749)
+## è®¤è¯†org.springframework.web.context.support.XmlWebApplicationContext
+ä»XMLé…ç½®æ–‡ä»¶ä¸­è£…é…çš„ï¼Œç”¨äºWEBç¯å¢ƒçš„ApplicationContextå®ç°ç±»ï¼Œæ´¾ç”Ÿäº {@link org.springframework.web.context.support.XmlWebApplicationContext}ã€‚  
+- getParentBeanFactory()è·å–çˆ¶å®¹å™¨beanå·¥å‚
+- getAutowireCapableBeanFactory è·å–ä¸€ä¸ªæ³¨å†Œäº†beançš„é›†åˆå·¥å‚
 
-## ÈÏÊ¶org.springframework.beans.factory.support.DefaultListableBeanFactory
-²Î¿¼[spring beansÔ´Âë½â¶ÁÖ® iocÈİÆ÷Ö®Ê¼×æ--DefaultListableBeanFactory](https://www.cnblogs.com/davidwang456/p/4187012.html)  
-£¨×Ô¼ºµÄÀí½â£©·â×°springÈİÆ÷ÖĞÒÑ¾­×¢²áºÃµÄbeanµÄ¼¯ºÏÀà¡£
-- ¼Ì³Ğ×ÔAbstractAutowireCapableBeanFactoryµÄ·½·¨  
+## è®¤è¯†org.springframework.beans.factory.support.DefaultListableBeanFactory
+å‚è€ƒ[spring beansæºç è§£è¯»ä¹‹ iocå®¹å™¨ä¹‹å§‹ç¥–--DefaultListableBeanFactory](https://www.cnblogs.com/davidwang456/p/4187012.html)  
+ï¼ˆè‡ªå·±çš„ç†è§£ï¼‰å°è£…springå®¹å™¨ä¸­å·²ç»æ³¨å†Œå¥½çš„beançš„é›†åˆç±»ã€‚
+- ç»§æ‰¿è‡ªAbstractAutowireCapableBeanFactoryçš„æ–¹æ³•  
 
->Ìá¹©beanµÄ´´½¨ (ÓĞconstruct·½·¨), ÊôĞÔ×¢Öµ, °ó¶¨ (°üÀ¨×Ô¶¯°ó¶¨)ºÍ³õÊ¼»¯.´¦ÀíÔËĞĞÊ±beanÒıÓÃ, ½âÎö¹ÜÀíµÄ¼¯ºÏ, µ÷ÓÃ³õÊ¼»¯·½·¨¡£
+>æä¾›beançš„åˆ›å»º (æœ‰constructæ–¹æ³•), å±æ€§æ³¨å€¼, ç»‘å®š (åŒ…æ‹¬è‡ªåŠ¨ç»‘å®š)å’Œåˆå§‹åŒ–.å¤„ç†è¿è¡Œæ—¶beanå¼•ç”¨, è§£æç®¡ç†çš„é›†åˆ, è°ƒç”¨åˆå§‹åŒ–æ–¹æ³•ã€‚
 
-## ÈÏÊ¶org.springframework.aop.support.AopUtils
-Õâ¾ÍÊÇspringµÄÒ»¸ö¹¤¾ßÀà£º
->public static Class<?> getTargetClass(Object candidate)Õâ¸ö·½·¨ÊÇÍ¨¹ıAopµÄ´úÀí²éÕÒµ½Ä¿±êÀà£¨¼´ÕæÕıÖ´ĞĞÂß¼­µÄÀà£©¡£  
-²Î¿¼[getTargetClassËµÃ÷ºÍÊ¹ÓÃ](http://norther.iteye.com/blog/269763)
+## è®¤è¯†org.springframework.aop.support.AopUtils
+è¿™å°±æ˜¯springçš„ä¸€ä¸ªå·¥å…·ç±»ï¼š
+>public static Class<?> getTargetClass(Object candidate)è¿™ä¸ªæ–¹æ³•æ˜¯é€šè¿‡Aopçš„ä»£ç†æŸ¥æ‰¾åˆ°ç›®æ ‡ç±»ï¼ˆå³çœŸæ­£æ‰§è¡Œé€»è¾‘çš„ç±»ï¼‰ã€‚  
+å‚è€ƒ[getTargetClassè¯´æ˜å’Œä½¿ç”¨](http://norther.iteye.com/blog/269763)
 
-## ÈÏÊ¶org.springframework.beans.factory.config.RuntimeBeanReference.RuntimeBeanReference(String)
-²Î¿¼[Spring BeanµÄ½âÎö RuntimeBeanReference](https://blog.csdn.net/jerryai1/article/details/52980239)  
-ÔÚSpringÖĞ£¬BeanµÄ½âÎö½×¶Î£¬»á°ÑxmlÅäÖÆÖĞµÄ<bean>±êÇ©½âÎö³ÉSpringÖĞµÄBeanDefinition¶ÔÏñ£¬ÎÒÃÇÖªµÀÒ»¸öbean¿ÉÄÜĞèÒªÒÀÀµÆäËûµÄbean£¬ÔÚXMLÅäÖÃÖĞ¿ÉÒÔ±íÏÖÎª  
+## è®¤è¯†org.springframework.beans.factory.config.RuntimeBeanReference.RuntimeBeanReference(String)
+å‚è€ƒ[Spring Beançš„è§£æ RuntimeBeanReference](https://blog.csdn.net/jerryai1/article/details/52980239)  
+åœ¨Springä¸­ï¼ŒBeançš„è§£æé˜¶æ®µï¼Œä¼šæŠŠxmlé…åˆ¶ä¸­çš„<bean>æ ‡ç­¾è§£ææˆSpringä¸­çš„BeanDefinitionå¯¹åƒï¼Œæˆ‘ä»¬çŸ¥é“ä¸€ä¸ªbeanå¯èƒ½éœ€è¦ä¾èµ–å…¶ä»–çš„beanï¼Œåœ¨XMLé…ç½®ä¸­å¯ä»¥è¡¨ç°ä¸º  
 ```xml
 <bean class="foo.bar.xxx">
    <property name="referBeanName" ref="otherBeanName" />
 </bean>
 ```
-ÔÚSpringµÄ½âÎö¶Î£¬ÆäÊµÈİÆ÷ÖĞÊÇÃ»ÓĞÒÀÀµµÄBeanµÄÊµÀıµÄÒò´Ë£¬ÄÇÃ´ÕâÊÇÕâ¸ö±»ÒÀÀµµÄBeanÈçºÎÔÚBeanDefinitionÖĞ±íÊ¾ÄØ£¿  
-´ğ°¸¾ÍÊÇRuntimeBeanReference£¬ÔÚ½âÎöµ½ÒÀÀµµÄBeanµÄÊ±ºî£¬½âÎöÆ÷»áÒÀ¾İÒÀÀµbeanµÄname´´½¨Ò»¸öRuntimeBeanReference¶ÔÏñ£¬½«Õâ¸ö¶ÔÏñ·ÅÈëBeanDefinitionµÄMutablePropertyValuesÖĞ¡£  
-ÀıÈç£ºÉÏÀıÖĞµÄÒÀÀµbean»á±»½âÎö³É  
+åœ¨Springçš„è§£ææ®µï¼Œå…¶å®å®¹å™¨ä¸­æ˜¯æ²¡æœ‰ä¾èµ–çš„Beançš„å®ä¾‹çš„å› æ­¤ï¼Œé‚£ä¹ˆè¿™æ˜¯è¿™ä¸ªè¢«ä¾èµ–çš„Beanå¦‚ä½•åœ¨BeanDefinitionä¸­è¡¨ç¤ºå‘¢ï¼Ÿ  
+ç­”æ¡ˆå°±æ˜¯RuntimeBeanReferenceï¼Œåœ¨è§£æåˆ°ä¾èµ–çš„Beançš„æ—¶ä¾¯ï¼Œè§£æå™¨ä¼šä¾æ®ä¾èµ–beançš„nameåˆ›å»ºä¸€ä¸ªRuntimeBeanReferenceå¯¹åƒï¼Œå°†è¿™ä¸ªå¯¹åƒæ”¾å…¥BeanDefinitionçš„MutablePropertyValuesä¸­ã€‚  
+ä¾‹å¦‚ï¼šä¸Šä¾‹ä¸­çš„ä¾èµ–beanä¼šè¢«è§£ææˆ  
 ```java
-//ÎÒÃÇÖªµÀfoo.bar.xxx ±»½âÎöÎªÒ»¸öbeanDefiniton£¬¼ÙÉèÎªxxxBeanDefinition
+//æˆ‘ä»¬çŸ¥é“foo.bar.xxx è¢«è§£æä¸ºä¸€ä¸ªbeanDefinitonï¼Œå‡è®¾ä¸ºxxxBeanDefinition
 reference = new RuntimeBeanReference("otherBeanName");
 xxxBeanDefinition.getPropertyValues().addPropertyValue("referBeanName", reference);
 ```
-## ÈÏÊ¶org.springframework.beans.factory.annotation.AnnotatedBeanDefinition
-²Î¿¼[AnnotatedBeanDefinition](https://www.cnblogs.com/davidwang456/p/4199459.html)  
-AnnotationMetadataÀï²¿·Ö·½·¨ËµÃ÷£º   
-boolean isInterface()·µ»Ø¸ÃÀàÊÇ·ñÊÇ½Ó¿Ú¡£  
-boolean isAbstract()·µ»Ø¸ÃÀàÊÇ·ñÎª³éÏóÀà¡£  
-boolean isConcrete()·µ»Ø¸ÃÀàÊÇ·ñÎª¾ßÌåÀà¡£  
-boolean isFinal()·µ»Ø¸ÃÀàÊÇ·ñÎªfinalÀà¡£  
-ÎªÊ²Ã´¶Â¶ÂÃ»ÓĞÏîÄ¿ÖĞÊ¹ÓÃµÄbeanDefinition.getMetadata().isIndependent()   
-## ÈÏÊ¶org.springframework.web.context.ContextLoaderListener  
-²Î¿¼[SpringµÄ³õÊ¼»¯£ºorg.springframework.web.context.ContextLoaderListener](https://www.cnblogs.com/wuchaodzxx/p/6038895.html)  
-ÔÚweb.xmlÖĞÅäÖÃ£º  
+## è®¤è¯†org.springframework.beans.factory.annotation.AnnotatedBeanDefinition
+å‚è€ƒ[AnnotatedBeanDefinition](https://www.cnblogs.com/davidwang456/p/4199459.html)  
+AnnotationMetadataé‡Œéƒ¨åˆ†æ–¹æ³•è¯´æ˜ï¼š   
+boolean isInterface()è¿”å›è¯¥ç±»æ˜¯å¦æ˜¯æ¥å£ã€‚  
+boolean isAbstract()è¿”å›è¯¥ç±»æ˜¯å¦ä¸ºæŠ½è±¡ç±»ã€‚  
+boolean isConcrete()è¿”å›è¯¥ç±»æ˜¯å¦ä¸ºå…·ä½“ç±»ã€‚  
+boolean isFinal()è¿”å›è¯¥ç±»æ˜¯å¦ä¸ºfinalç±»ã€‚  
+ä¸ºä»€ä¹ˆå µå µæ²¡æœ‰é¡¹ç›®ä¸­ä½¿ç”¨çš„beanDefinition.getMetadata().isIndependent()   
+## è®¤è¯†org.springframework.web.context.ContextLoaderListener  
+å‚è€ƒ[Springçš„åˆå§‹åŒ–ï¼šorg.springframework.web.context.ContextLoaderListener](https://www.cnblogs.com/wuchaodzxx/p/6038895.html)  
+åœ¨web.xmlä¸­é…ç½®ï¼š  
 ```xml
 <listener>
  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
  </listener>
 ```
-ContextLoaderListenerµÄ×÷ÓÃ¾ÍÊÇÆô¶¯WebÈİÆ÷Ê±£¬×Ô¶¯×°ÅäApplicationContext.xmlµÄÅäÖÃĞÅÏ¢¡£ÒòÎªËüÊµÏÖÁËServletContextListenerÕâ¸ö½Ó¿Ú£¬ÔÚweb.xmlÅäÖÃÕâ¸ö¼àÌıÆ÷£¬Æô¶¯ÈİÆ÷Ê±£¬¾Í»áÄ¬ÈÏÖ´ĞĞËüÊµÏÖµÄ·½·¨    
-## ÈÏÊ¶org.springframework.context.ApplicationContextAware  
-²Î¿¼[org.springframework.context.ApplicationContextAwareÊ¹ÓÃÀí½â](https://www.cnblogs.com/McCa/p/5920865.html)  
-µ±Ò»¸öÀàÊµÏÖÁËÕâ¸ö½Ó¿Ú£¨ApplicationContextAware£©Ö®ºó£¬Õâ¸öÀà¾Í¿ÉÒÔ·½±ã»ñµÃApplicationContextÖĞµÄËùÓĞbean¡£»»¾ä»°Ëµ£¬¾ÍÊÇÕâ¸öÀà¿ÉÒÔÖ±½Ó»ñÈ¡springÅäÖÃÎÄ¼şÖĞ£¬ËùÓĞÓĞÒıÓÃµ½µÄbean¶ÔÏó¡£  
-1.SpringMVC»·¾³µÄ´î½¨  
+ContextLoaderListenerçš„ä½œç”¨å°±æ˜¯å¯åŠ¨Webå®¹å™¨æ—¶ï¼Œè‡ªåŠ¨è£…é…ApplicationContext.xmlçš„é…ç½®ä¿¡æ¯ã€‚å› ä¸ºå®ƒå®ç°äº†ServletContextListenerè¿™ä¸ªæ¥å£ï¼Œåœ¨web.xmlé…ç½®è¿™ä¸ªç›‘å¬å™¨ï¼Œå¯åŠ¨å®¹å™¨æ—¶ï¼Œå°±ä¼šé»˜è®¤æ‰§è¡Œå®ƒå®ç°çš„æ–¹æ³•    
+## è®¤è¯†org.springframework.context.ApplicationContextAware  
+å‚è€ƒ[org.springframework.context.ApplicationContextAwareä½¿ç”¨ç†è§£](https://www.cnblogs.com/McCa/p/5920865.html)  
+å½“ä¸€ä¸ªç±»å®ç°äº†è¿™ä¸ªæ¥å£ï¼ˆApplicationContextAwareï¼‰ä¹‹åï¼Œè¿™ä¸ªç±»å°±å¯ä»¥æ–¹ä¾¿è·å¾—ApplicationContextä¸­çš„æ‰€æœ‰beanã€‚æ¢å¥è¯è¯´ï¼Œå°±æ˜¯è¿™ä¸ªç±»å¯ä»¥ç›´æ¥è·å–springé…ç½®æ–‡ä»¶ä¸­ï¼Œæ‰€æœ‰æœ‰å¼•ç”¨åˆ°çš„beanå¯¹è±¡ã€‚  
+1.SpringMVCç¯å¢ƒçš„æ­å»º  
     
-    > 1.1  ÔÚweb.xmlÎÄ¼şÀï½øĞĞÅäÖÃ.  
+    > 1.1  åœ¨web.xmlæ–‡ä»¶é‡Œè¿›è¡Œé…ç½®.  
 	```xml
 	 <servlet>
 	  <servlet-name>dispatcher</servlet-name>
@@ -170,12 +170,12 @@ ContextLoaderListenerµÄ×÷ÓÃ¾ÍÊÇÆô¶¯WebÈİÆ÷Ê±£¬×Ô¶¯×°ÅäApplicationContext.xmlµÄÅä
 	 </servlet-mapping>
 	```
 	
-	>1.2  ÔÚspring-mvc.xmlÀïÅäÖÃ¡£  
-	>> 1.2.1 ĞèÒªspringÉ¨ÃèµÄ°ü£¨Ò»°ãÊÇcontrollerÁË£©¡£  
+	>1.2  åœ¨spring-mvc.xmlé‡Œé…ç½®ã€‚  
+	>> 1.2.1 éœ€è¦springæ‰«æçš„åŒ…ï¼ˆä¸€èˆ¬æ˜¯controlleräº†ï¼‰ã€‚  
 	<context:component-scan base-package="com.jiang.web.controller"></context:component-scan>  
-	>> 1.2.2 ÆäËüÒ»Ğ©ÅäÖÃĞÅÏ¢.  
+	>> 1.2.2 å…¶å®ƒä¸€äº›é…ç½®ä¿¡æ¯.  
 	```xml
-	<!--±ÜÃâIEÖ´ĞĞAJAXÊ±£¬·µ»ØJSON³öÏÖÏÂÔØÎÄ¼ş -->
+	<!--é¿å…IEæ‰§è¡ŒAJAXæ—¶ï¼Œè¿”å›JSONå‡ºç°ä¸‹è½½æ–‡ä»¶ -->
 	 <bean id="mappingJacksonHttpMessageConverter"
 	  class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 	  <property name="supportedMediaTypes">
@@ -184,23 +184,23 @@ ContextLoaderListenerµÄ×÷ÓÃ¾ÍÊÇÆô¶¯WebÈİÆ÷Ê±£¬×Ô¶¯×°ÅäApplicationContext.xmlµÄÅä
 	   </list>
 	  </property>
 	 </bean>
-	 <!-- Æô¶¯SpringMVCµÄ×¢½â¹¦ÄÜ£¬Íê³ÉÇëÇóºÍ×¢½âPOJOµÄÓ³Éä -->
+	 <!-- å¯åŠ¨SpringMVCçš„æ³¨è§£åŠŸèƒ½ï¼Œå®Œæˆè¯·æ±‚å’Œæ³¨è§£POJOçš„æ˜ å°„ -->
 	 <bean
 	  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	  <property name="messageConverters">
 	   <list>
-	    <ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSON×ª»»Æ÷ -->
+	    <ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSONè½¬æ¢å™¨ -->
 	   </list>
 	  </property>
 	 </bean>
-	 <!-- ¶¨ÒåÌø×ªµÄÎÄ¼şµÄÇ°ºó×º £¬ÊÓÍ¼Ä£Ê½ÅäÖÃ-->
+	 <!-- å®šä¹‰è·³è½¬çš„æ–‡ä»¶çš„å‰åç¼€ ï¼Œè§†å›¾æ¨¡å¼é…ç½®-->
 	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	  <!-- ÕâÀïµÄÅäÖÃÎÒµÄÀí½âÊÇ×Ô¶¯¸øºóÃæactionµÄ·½·¨returnµÄ×Ö·û´®¼ÓÉÏÇ°×ººÍºó×º£¬±ä³ÉÒ»¸ö ¿ÉÓÃµÄurlµØÖ· -->
+	  <!-- è¿™é‡Œçš„é…ç½®æˆ‘çš„ç†è§£æ˜¯è‡ªåŠ¨ç»™åé¢actionçš„æ–¹æ³•returnçš„å­—ç¬¦ä¸²åŠ ä¸Šå‰ç¼€å’Œåç¼€ï¼Œå˜æˆä¸€ä¸ª å¯ç”¨çš„urlåœ°å€ -->
 	  <property name="prefix" value="/WEB-INF/jsp/" />
 	  <property name="suffix" value=".jsp" />
 	 </bean>
 	```  
-	> 1.3 ±àĞ´ControllerµÄjavaÀà.  
+	> 1.3 ç¼–å†™Controllerçš„javaç±».  
 	````java
 	package com.jiang.web.controller;
 
@@ -227,12 +227,12 @@ ContextLoaderListenerµÄ×÷ÓÃ¾ÍÊÇÆô¶¯WebÈİÆ÷Ê±£¬×Ô¶¯×°ÅäApplicationContext.xmlµÄÅä
 		}
 	
 	``` 
-	> 1.4 Æô¶¯ÈİÆ÷,ÔÚä¯ÀÀÆ÷ÊäÈëµØÖ·¼´¿É.  
+	> 1.4 å¯åŠ¨å®¹å™¨,åœ¨æµè§ˆå™¨è¾“å…¥åœ°å€å³å¯.  
 	
-×¢Òâ¿ÉÄÜ»á³öÏÖ  [×¢ÈëbeanÊ§°ÜµÄÎÊÌâ](#notBean)  
-2.ÔÚ´î½¨»·¾³¹ı³ÌÖĞ£¬ÎÒÊ¹ÓÃÁËÈçÏÂµÄÅäÖÃ£º  
+æ³¨æ„å¯èƒ½ä¼šå‡ºç°  [æ³¨å…¥beanå¤±è´¥çš„é—®é¢˜](#notBean)  
+2.åœ¨æ­å»ºç¯å¢ƒè¿‡ç¨‹ä¸­ï¼Œæˆ‘ä½¿ç”¨äº†å¦‚ä¸‹çš„é…ç½®ï¼š  
 ```xml
-<!--±ÜÃâIEÖ´ĞĞAJAXÊ±£¬·µ»ØJSON³öÏÖÏÂÔØÎÄ¼ş -->
+<!--é¿å…IEæ‰§è¡ŒAJAXæ—¶ï¼Œè¿”å›JSONå‡ºç°ä¸‹è½½æ–‡ä»¶ -->
 	 <bean id="mappingJacksonHttpMessageConverter"
 	  class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 	  <property name="supportedMediaTypes">
@@ -241,21 +241,21 @@ ContextLoaderListenerµÄ×÷ÓÃ¾ÍÊÇÆô¶¯WebÈİÆ÷Ê±£¬×Ô¶¯×°ÅäApplicationContext.xmlµÄÅä
 	   </list>
 	  </property>
 	 </bean>
-	 <!-- Æô¶¯SpringMVCµÄ×¢½â¹¦ÄÜ£¬Íê³ÉÇëÇóºÍ×¢½âPOJOµÄÓ³Éä -->
+	 <!-- å¯åŠ¨SpringMVCçš„æ³¨è§£åŠŸèƒ½ï¼Œå®Œæˆè¯·æ±‚å’Œæ³¨è§£POJOçš„æ˜ å°„ -->
 	 <bean
 	  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	  <property name="messageConverters">
 	   <list>
-	    <ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSON×ª»»Æ÷ -->
+	    <ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSONè½¬æ¢å™¨ -->
 	   </list>
 	  </property>
 	 </bean>
 ```
-ÔÚ·ÃÎÊÎÒĞ´µÄ½Ó¿ÚµÄUrlµÄÊ±ºòÒ³Ãæ±¨´íÁË£¨ÈçÏÂÍ¼£©£º  
+åœ¨è®¿é—®æˆ‘å†™çš„æ¥å£çš„Urlçš„æ—¶å€™é¡µé¢æŠ¥é”™äº†ï¼ˆå¦‚ä¸‹å›¾ï¼‰ï¼š  
 
 ![image](./wikiImg/spring_mvc_1.png)
-Ô­À´ÊÇjar°üÃ»ÓĞÒıÓÃ£¬ĞèÒªÒıÓÃÒ»ÏÂjar°ü£º  
-jackson-core-asl.jarºÍjackson-mapper-asl.jar£¬pomÎÄ¼ş¸ñÊ½ÈçÏÂ£º  
+åŸæ¥æ˜¯jaråŒ…æ²¡æœ‰å¼•ç”¨ï¼Œéœ€è¦å¼•ç”¨ä¸€ä¸‹jaråŒ…ï¼š  
+jackson-core-asl.jarå’Œjackson-mapper-asl.jarï¼Œpomæ–‡ä»¶æ ¼å¼å¦‚ä¸‹ï¼š  
 ```xml
 <dependency>
 	   <groupId>org.codehaus.jackson</groupId>
@@ -269,9 +269,9 @@ jackson-core-asl.jarºÍjackson-mapper-asl.jar£¬pomÎÄ¼ş¸ñÊ½ÈçÏÂ£º
 	  </dependency>
 ``` 
 
-# spring ÓëhessianµÄÕûºÏ
-## ·şÎñ¶Ë
-1.ÔÚweb.xmlÎÄ¼şÖĞÅäÖÃhessianµÄ¹ıÂËÅäÖÃ£º  
+# spring ä¸hessiançš„æ•´åˆ
+## æœåŠ¡ç«¯
+1.åœ¨web.xmlæ–‡ä»¶ä¸­é…ç½®hessiançš„è¿‡æ»¤é…ç½®ï¼š  
 ```xml
 <servlet>
   	<servlet-name>hessian</servlet-name>
@@ -287,12 +287,12 @@ jackson-core-asl.jarºÍjackson-mapper-asl.jar£¬pomÎÄ¼ş¸ñÊ½ÈçÏÂ£º
   	<url-pattern>/hessian/*</url-pattern>
   </servlet-mapping>
 ```
-2.hessian-servlet.xmlµÄÅäÖÃÎÄ¼ş,ÕâÊÇÒ»¸ö×Ô¼ºĞ´µÄ¶ÔhessianÌá¹©·şÎñµÄÀà,¼õÈ¥ ÁËĞèÒª²»Í£ÅäÖÃµÄ·±Ëö.ÕâÀïÒ»¸öÊÇĞèÒªÖ¸¶¨µÄÉ¨Ãè°üÂ·¾¶,ÁíÒ»¸öÊÇÎÒÃÇ×Ô¶¨ÒåµÄ×¢½â(·²ÊÇĞèÒªÌá¹©·şÎñµÄ½Ó¿Ú¶¼ÒªÊ¹ÓÃ¸Ã×¢½â)  
-ÏÂÃæÖØücÖv½âcom.jiang.util.HessianServerScannerConfigurerÀà¡£Õâ¸öÀàµÄÊµÏÖ½Ó¿ÚÈçÏÂ£º¡¡¡¡
+2.hessian-servlet.xmlçš„é…ç½®æ–‡ä»¶,è¿™æ˜¯ä¸€ä¸ªè‡ªå·±å†™çš„å¯¹hessianæä¾›æœåŠ¡çš„ç±»,å‡å» äº†éœ€è¦ä¸åœé…ç½®çš„ç¹ç.è¿™é‡Œä¸€ä¸ªæ˜¯éœ€è¦æŒ‡å®šçš„æ‰«æåŒ…è·¯å¾„,å¦ä¸€ä¸ªæ˜¯æˆ‘ä»¬è‡ªå®šä¹‰çš„æ³¨è§£(å‡¡æ˜¯éœ€è¦æä¾›æœåŠ¡çš„æ¥å£éƒ½è¦ä½¿ç”¨è¯¥æ³¨è§£)  
+ä¸‹é¢é‡é»è¬›è§£com.jiang.util.HessianServerScannerConfigurerç±»ã€‚è¿™ä¸ªç±»çš„å®ç°æ¥å£å¦‚ä¸‹ï¼šã€€ã€€
 ```java
 public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, BeanNameAware, ApplicationContextAware
 ```
-¸ÃÀàÊµÏÖÁËorg.springframework.context.ApplicationContextAware.Àà»áÍ¨¹ıÏÂÃæµÄ·½·¨£¬½«springÓ¦ÓÃÉÏÏÂÎÄ¸³Öµ¸øÀàÊôĞÔapplicationContext  
+è¯¥ç±»å®ç°äº†org.springframework.context.ApplicationContextAware.ç±»ä¼šé€šè¿‡ä¸‹é¢çš„æ–¹æ³•ï¼Œå°†springåº”ç”¨ä¸Šä¸‹æ–‡èµ‹å€¼ç»™ç±»å±æ€§applicationContext  
 ```java
 @Override
 	public void setApplicationContext( ApplicationContext applicationContext ) throws BeansException {
@@ -300,27 +300,27 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
 		this.applicationContext = applicationContext;
 	}
 ```
-¿ÉÒÔ¿´µ½ÊµÏÖÁËorg.springframework.beans.factory.InitializingBean£¬InitializingBean½Ó¿ÚÎªbeanÌá¹©ÁË³õÊ¼»¯·½·¨µÄ·½Ê½£¬ËüÖ»°üÀ¨afterPropertiesSet·½·¨£¬·²ÊÇ¼Ì³Ğ¸Ã½Ó¿ÚµÄÀà£¬ÔÚ³õÊ¼»¯beanµÄÊ±ºò»áÖ´ĞĞ¸Ã·½·¨¡£ËùÒÔspringÈİÆ÷ÔÚ¼ÓÔØ³õÊ¼»¯Õâ¸öbeanµÄÊ±ºò»áÏÈÖ´ĞĞafterPropertiesSet·½·¨¡£¡¡¡¡
-com.jiang.util.HessianServerScannerConfigurer.afterPropertiesSet()Õâ¸ö·½·¨Âß¼­ÊÇÔÚspringÈİÆ÷µÄÓ¦ÓÃÀïÕÒµ½±»×¢ÈëµÄbean£¬È»ºó±éÀúbean,ÕÒµ½beanÊµÏÖµÄ½Ó¿Ú¼¯ºÏ£¬¼ì²é½Ó¿ÚÊÇ·ñÓĞÎÒÃÇ×Ô¶¨ÒåµÄ×¢½â¡£Èç¹ûÓĞ¾Í½«¸Ãbean·ÅÈëmapÀï¡£  
-¸ÃÀàÊµÏÖÁËorg.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor½Ó¿Ú.½Ó¿ÚÀïµÄpostProcessBeanDefinitionRegistry·½·¨¿ÉÒÔĞŞ¸ÄÔÚBeanDefinitionRegistry½Ó¿ÚÊµÏÖÀàÖĞ×¢²áµÄÈÎÒâBeanDefinition£¬Ò²¿ÉÒÔÔö¼ÓºÍÉ¾³ıBeanDefinition¡£Ô­ÒòÊÇÕâ¸ö·½·¨Ö´ĞĞÇ°ËùÓĞ³£¹æµÄBeanDefinitionÒÑ¾­±»¼ÓÔØµ½BeanDefinitionRegistry½Ó¿ÚÊµÏÖÀàÖĞ£¬µ«»¹Ã»ÓĞbean±»ÊµÀı»¯¡£  
-com.jiang.util.HessianServerScannerConfigurer.postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)Õâ¸ö·½·¨Àï»áÓĞÒ»¸ö×Ô¶¨ÒåµÄÉ¨ÃèÀà,  
+å¯ä»¥çœ‹åˆ°å®ç°äº†org.springframework.beans.factory.InitializingBeanï¼ŒInitializingBeanæ¥å£ä¸ºbeanæä¾›äº†åˆå§‹åŒ–æ–¹æ³•çš„æ–¹å¼ï¼Œå®ƒåªåŒ…æ‹¬afterPropertiesSetæ–¹æ³•ï¼Œå‡¡æ˜¯ç»§æ‰¿è¯¥æ¥å£çš„ç±»ï¼Œåœ¨åˆå§‹åŒ–beançš„æ—¶å€™ä¼šæ‰§è¡Œè¯¥æ–¹æ³•ã€‚æ‰€ä»¥springå®¹å™¨åœ¨åŠ è½½åˆå§‹åŒ–è¿™ä¸ªbeançš„æ—¶å€™ä¼šå…ˆæ‰§è¡ŒafterPropertiesSetæ–¹æ³•ã€‚ã€€ã€€
+com.jiang.util.HessianServerScannerConfigurer.afterPropertiesSet()è¿™ä¸ªæ–¹æ³•é€»è¾‘æ˜¯åœ¨springå®¹å™¨çš„åº”ç”¨é‡Œæ‰¾åˆ°è¢«æ³¨å…¥çš„beanï¼Œç„¶åéå†bean,æ‰¾åˆ°beanå®ç°çš„æ¥å£é›†åˆï¼Œæ£€æŸ¥æ¥å£æ˜¯å¦æœ‰æˆ‘ä»¬è‡ªå®šä¹‰çš„æ³¨è§£ã€‚å¦‚æœæœ‰å°±å°†è¯¥beanæ”¾å…¥mapé‡Œã€‚  
+è¯¥ç±»å®ç°äº†org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessoræ¥å£.æ¥å£é‡Œçš„postProcessBeanDefinitionRegistryæ–¹æ³•å¯ä»¥ä¿®æ”¹åœ¨BeanDefinitionRegistryæ¥å£å®ç°ç±»ä¸­æ³¨å†Œçš„ä»»æ„BeanDefinitionï¼Œä¹Ÿå¯ä»¥å¢åŠ å’Œåˆ é™¤BeanDefinitionã€‚åŸå› æ˜¯è¿™ä¸ªæ–¹æ³•æ‰§è¡Œå‰æ‰€æœ‰å¸¸è§„çš„BeanDefinitionå·²ç»è¢«åŠ è½½åˆ°BeanDefinitionRegistryæ¥å£å®ç°ç±»ä¸­ï¼Œä½†è¿˜æ²¡æœ‰beanè¢«å®ä¾‹åŒ–ã€‚  
+com.jiang.util.HessianServerScannerConfigurer.postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)è¿™ä¸ªæ–¹æ³•é‡Œä¼šæœ‰ä¸€ä¸ªè‡ªå®šä¹‰çš„æ‰«æç±»,  
 ```java
 private class HessianClassPathScanner extends ClassPathBeanDefinitionScanner
 ```
-HessianClassPathScannerÀà¼Ì³ĞÁËorg.springframework.context.annotation.ClassPathBeanDefinitionScannerÀà£¬ÎÒÖØĞ´isCandidateComponent·½·¨£¬ÒòÎªÄ¬ÈÏµÄ·½·¨¹ıÂËÁË½Ó¿ÚÀàĞÍ£¬¶øÎÒÕâÀïĞèÒªµÄ¾ÍÊÇ½Ó¿Ú£¬ËùÒÔÖØĞ´ÁË¡£  ÖØĞ´ÁËdoScan·½·¨£¬±éÀúBeanDefinitionHolder¼¯ºÏ,ĞŞ¸ÄGenericBeanDefinitionĞÅÏ¢,Ê¹Æä³ÉÎªhessian·şÎñ.
-com.jiang.util.HessianServerScannerConfigurer.HessianClassPathScanner.registerFilters()£¬×¢²áÉ¨ÃèÊ±µÄÒ»Ğ©¹ıÂËÆ÷£¬È·±£±»ÕıÈ·µÄÉ¨Ãè¡£
-3.±àĞ´½Ó¿Ú·şÎñºÍÊµÏÖÀà£¨¾ßÌå²é¿´ÏîÄ¿ÖĞµÄÊ¹ÓÃ£©
+HessianClassPathScannerç±»ç»§æ‰¿äº†org.springframework.context.annotation.ClassPathBeanDefinitionScannerç±»ï¼Œæˆ‘é‡å†™isCandidateComponentæ–¹æ³•ï¼Œå› ä¸ºé»˜è®¤çš„æ–¹æ³•è¿‡æ»¤äº†æ¥å£ç±»å‹ï¼Œè€Œæˆ‘è¿™é‡Œéœ€è¦çš„å°±æ˜¯æ¥å£ï¼Œæ‰€ä»¥é‡å†™äº†ã€‚  é‡å†™äº†doScanæ–¹æ³•ï¼Œéå†BeanDefinitionHolderé›†åˆ,ä¿®æ”¹GenericBeanDefinitionä¿¡æ¯,ä½¿å…¶æˆä¸ºhessianæœåŠ¡.
+com.jiang.util.HessianServerScannerConfigurer.HessianClassPathScanner.registerFilters()ï¼Œæ³¨å†Œæ‰«ææ—¶çš„ä¸€äº›è¿‡æ»¤å™¨ï¼Œç¡®ä¿è¢«æ­£ç¡®çš„æ‰«æã€‚
+3.ç¼–å†™æ¥å£æœåŠ¡å’Œå®ç°ç±»ï¼ˆå…·ä½“æŸ¥çœ‹é¡¹ç›®ä¸­çš„ä½¿ç”¨ï¼‰
 ```xml
 <bean class="com.jiang.util.HessianServerScannerConfigurer">
 		<property name="basePackge" value="com.jiang.service"></property>
 		<property name="annotationClass" value="com.jiang.util.Hession"></property>
 	</bean>
 ```
-## ¿Í»§¶Ë  
-¿Í»§¶ËÖ»ĞèÒªÖ¸¶¨ºÃurlµØÖ·£¬¸ù¾İcom.caucho.hessian.client.HessianProxyFactoryµÄcreate´´½¨¡£¿ÉÒÔ²Î¿¼ÏîÄ¿ÖĞµÄ
-# springÎÊÌâ  
-- ÔÚÏîÄ¿ÖĞ±àĞ´ÁËÒ»¸öÕâÑùµÄÀà£º  
-²Î¿¼[The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from required](https://blog.csdn.net/lurao/article/details/50237253)
+## å®¢æˆ·ç«¯  
+å®¢æˆ·ç«¯åªéœ€è¦æŒ‡å®šå¥½urlåœ°å€ï¼Œæ ¹æ®com.caucho.hessian.client.HessianProxyFactoryçš„createåˆ›å»ºã€‚å¯ä»¥å‚è€ƒé¡¹ç›®ä¸­çš„
+# springé—®é¢˜  
+- åœ¨é¡¹ç›®ä¸­ç¼–å†™äº†ä¸€ä¸ªè¿™æ ·çš„ç±»ï¼š  
+å‚è€ƒ[The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from required](https://blog.csdn.net/lurao/article/details/50237253)
 ```java
 package com.jiang.util;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
@@ -347,8 +347,8 @@ public class SpringContext extends XmlWebApplicationContext{
 }
 
 ```
-±àÒëÆ÷ÌáÊ¾±¨´íThe type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from  	 required .class files£¬ÕâÊÇÓÉÓÚÈ±ÉÙservlet¡£  
-ÒıÓÃÏÂÃæµÄÒÀÀµ¾Í¿ÉÒÔÁË:
+ç¼–è¯‘å™¨æç¤ºæŠ¥é”™The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from  	 required .class filesï¼Œè¿™æ˜¯ç”±äºç¼ºå°‘servletã€‚  
+å¼•ç”¨ä¸‹é¢çš„ä¾èµ–å°±å¯ä»¥äº†:
 ```xml
 <dependency>
 	  	<groupId>javax</groupId>
@@ -357,31 +357,31 @@ public class SpringContext extends XmlWebApplicationContext{
 	  </dependency>
 ```
 <a name="notBean"></a>
-- beanµÄ×¢ÈëÎÊÌâ  
-ÔÚjavaÖĞÊ¹ÓÃÏÂÃæ·½Ê½½øĞĞbeanµÄ×¢Èë
+- beançš„æ³¨å…¥é—®é¢˜  
+åœ¨javaä¸­ä½¿ç”¨ä¸‹é¢æ–¹å¼è¿›è¡Œbeançš„æ³¨å…¥
 ```java
 @Autowired
 	private UserService userService;
 ```
-ÔÚÇëÇóÊÇ³ö´íÁË£¬±¨×¢ÈëÊ§°Ü
+åœ¨è¯·æ±‚æ˜¯å‡ºé”™äº†ï¼ŒæŠ¥æ³¨å…¥å¤±è´¥
 
 > org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'testControll': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.jiang.service.UserService com.jiang.web.controller.TestControll.userService; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.jiang.service.UserService] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:292)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1185)
 	
-·¢ÏÖÊÇ×Ô¼ºÃ»ÓĞ¶Ôservice.impl°üÏÂµÄÊµÏÖÀà½øĞĞ½âÎö£¬ËùÒÔÔÚspringÈİÆ÷ÀïÃ»ÓĞÕâÑùµÄbean¡£ÓÚÊÇÎÒ¾ÍÔÚspring-mybatis,xmlÎÄ¼şÀïÌí¼ÓÉ¨ÃèÅäÖÃ¡£ÈçÏÂ£º
+å‘ç°æ˜¯è‡ªå·±æ²¡æœ‰å¯¹service.implåŒ…ä¸‹çš„å®ç°ç±»è¿›è¡Œè§£æï¼Œæ‰€ä»¥åœ¨springå®¹å™¨é‡Œæ²¡æœ‰è¿™æ ·çš„beanã€‚äºæ˜¯æˆ‘å°±åœ¨spring-mybatis,xmlæ–‡ä»¶é‡Œæ·»åŠ æ‰«æé…ç½®ã€‚å¦‚ä¸‹ï¼š
 ```xml
 <context:component-scan base-package="com.jiang.service.impl"></context:component-scan>
 ```	
-È»ºó¾Í³öÏÖÁË£¬ºóÃæµÄÎÊÌâ¡£
-- ÔÚweb.xmlÀïÅäÖÃÁË£º
+ç„¶åå°±å‡ºç°äº†ï¼Œåé¢çš„é—®é¢˜ã€‚
+- åœ¨web.xmlé‡Œé…ç½®äº†ï¼š
 ```xml
 <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:/spring-mybatis.xml</param-value>
   </context-param>
 ```
-·¢ÏÖÔÚÆô¶¯Ó¦ÓÃµÄÊ±ºò,springÈİÆ÷Ã»ÓĞÈ¥¼ÓÔØÕâ¸öÎÄ¼ş,µ±Ê±ºÃÉúÆæ¹Ö.Ô­À´»¹ÒªÔÚ.xmlÎÄ¼şÀï¼ÓÉÏspringµÄ¼àÌı¡£ÈçÏÂ£º
+å‘ç°åœ¨å¯åŠ¨åº”ç”¨çš„æ—¶å€™,springå®¹å™¨æ²¡æœ‰å»åŠ è½½è¿™ä¸ªæ–‡ä»¶,å½“æ—¶å¥½ç”Ÿå¥‡æ€ª.åŸæ¥è¿˜è¦åœ¨.xmlæ–‡ä»¶é‡ŒåŠ ä¸Šspringçš„ç›‘å¬ã€‚å¦‚ä¸‹ï¼š
 ```xml
 <listener>
  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
