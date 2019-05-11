@@ -15,7 +15,7 @@
 log4j.rootLogger=DEBUG,stdout,D
 > 日志打印的级别配置，这里是DEBUG。即只要是DEBUG级别或比DEBUG级别高的日志都可以打印。后面的D是append的部分。   
 > D代表的是按照这一部分配置输出日志（这只是配置文件的部分）
->> ```xml
+> ```xml
 		#输出至debug日志文件
 		log4j.appender.D=org.apache.log4j.DailyRollingFileAppender
 		log4j.appender.D.File=../logs/log4j/debug.log
@@ -23,8 +23,7 @@ log4j.rootLogger=DEBUG,stdout,D
 		log4j.appender.D.Threshold=DEBUG
 		log4j.appender.D.layout=org.apache.log4j.PatternLayout
 		log4j.appender.D.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
-	```
->> 这里有指定的输出格式和输出的目录文件。   
+> 这里有指定的输出格式和输出的目录文件。   
 
 - 在web.xml文件里加载配置文件   
 ```xml
@@ -41,8 +40,6 @@ log4j.rootLogger=DEBUG,stdout,D
 不同的文件里。  
 实现预期的希望就需要修改上面的部分代码。  
 > 修改配置，不同级别对应不同的输出日志文件。  
-> ```xml
-log4j.rootLogger=DEBUG,D,I,W,E
-```
+> ```xml log4j.rootLogger=DEBUG,D,I,W,E```
 > 重写配置文件里配置的DailyRollingFileAppender类，log4j.appender.I=org.apache.log4j.DailyRollingFileAppender  
 
