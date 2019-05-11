@@ -42,5 +42,5 @@ log4j.rootLogger=DEBUG,stdout,D
 > 修改配置，不同级别对应不同的输出日志文件。  
 > ``` log4j.rootLogger=DEBUG,D,I,W,E```  
 > 重写配置文件里配置的DailyRollingFileAppender类，log4j.appender.I=org.apache.log4j.DailyRollingFileAppender  
-> [重写类LogAppender](../java/com/jiang/util/LogAppender.java)  
+> [重写类LogAppender](./src/main/java/com/jiang/util/LogAppender.java)  
 
