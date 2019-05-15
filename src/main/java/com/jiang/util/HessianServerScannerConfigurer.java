@@ -100,37 +100,37 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
 		System.out.println( "afterPropertiesSet" );
 		notNull( this.basePackge, "Property 'basePackge' is required " + beanName );
 		notNull( this.annotationClass, "Property 'annotationClass' is required " + beanName );
-		//springÉÏÏÂ,ËùÓĞµÄbean¶¼ÔÚÀïÃæ
+		//springä¸Šä¸‹,æ‰€æœ‰çš„beanéƒ½åœ¨é‡Œé¢
 		XmlWebApplicationContext xmlContext = ( XmlWebApplicationContext )applicationContext;
 		do {
-			//»ñÈ¡bean¶¨ÒåµÄ¹¤³§£¬springµÄËùÓĞbean¶¼ÔÚ´ËÀàÖĞ
+			//è·å–beanå®šä¹‰çš„å·¥å‚ï¼Œspringçš„æ‰€æœ‰beanéƒ½åœ¨æ­¤ç±»ä¸­
 			DefaultListableBeanFactory beanfactory = ( DefaultListableBeanFactory )xmlContext.getAutowireCapableBeanFactory();
 			/*
-			 * ReflectionUtilsÊÇspringÌá¹©µÄ·´Éä¹¤¾ßÀà
-			 * Í¨¹ı·´Éä»ñÈ¡org.springframework.beans.factory.support.
-			 * DefaultSingletonBeanRegistryÀàµÄsingletonObjects×Ö¶Î private final
+			 * ReflectionUtilsæ˜¯springæä¾›çš„åå°„å·¥å…·ç±»
+			 * é€šè¿‡åå°„è·å–org.springframework.beans.factory.support.
+			 * DefaultSingletonBeanRegistryç±»çš„singletonObjectså­—æ®µ private final
 			 * Map<String, Object> singletonObjects = new
 			 * ConcurrentHashMap<String, Object>(64);
-			 * DefaultSingletonBeanRegistryÊÇDefaultListableBeanFactoryµÄ¸¸Àà£¬
-			 * ¿ÉÒÔÒ»²ã²ã²é¿´
+			 * DefaultSingletonBeanRegistryæ˜¯DefaultListableBeanFactoryçš„çˆ¶ç±»ï¼Œ
+			 * å¯ä»¥ä¸€å±‚å±‚æŸ¥çœ‹
 			 */
 			Field findField = ReflectionUtils.findField( beanfactory.getClass(), "singletonObjects" );
-			//ÉèÖÃÊ¹¸Ã×Ö¶Î¿ÉÒÔ±»·ÃÎÊ
+			//è®¾ç½®ä½¿è¯¥å­—æ®µå¯ä»¥è¢«è®¿é—®
 			ReflectionUtils.makeAccessible( findField );
-			// »ñÈ¡singletonObjectsÔÚ¶ÔÏóÉÏµÄÖµ
+			// è·å–singletonObjectsåœ¨å¯¹è±¡ä¸Šçš„å€¼
 			@SuppressWarnings( "unchecked" )
 			Map<String, Object> field = ( Map<String, Object> )ReflectionUtils.getField( findField, beanfactory );
 			for( Entry<String, Object> entry : field.entrySet() ) {
 				System.out.println( "key : " + entry.getKey() );
 				System.out.println( "value : " + entry.getValue().getClass().getName() );
-				// ÎÒÃÇÕâÀï»¹Ã»ÓĞÊ¹ÓÃaopÊÂÎï¹ÜÀí£¬Òò´ËÓÃÏÂÃæµÄ´úÂë£¬ºóĞøÔÚ¸ü¸Ä¹ıÀ´
+				// æˆ‘ä»¬è¿™é‡Œè¿˜æ²¡æœ‰ä½¿ç”¨aopäº‹ç‰©ç®¡ç†ï¼Œå› æ­¤ç”¨ä¸‹é¢çš„ä»£ç ï¼Œåç»­åœ¨æ›´æ”¹è¿‡æ¥
 				// Class<?>[] interfaces=AopUtils.getTargetClass(
 				// entry.getValue() ).getInterfaces();
 				Class<?>[] interfaces = entry.getValue().getClass().getInterfaces();
 
 				for( Class<?> interfaceClass : interfaces ) {
 					System.out.println( interfaceClass.getName() );
-					//»ñÈ¡ÔÚ½Ó¿ÚÉÏµÄÖ¸¶¨×¢½â
+					//è·å–åœ¨æ¥å£ä¸Šçš„æŒ‡å®šæ³¨è§£
 					Annotation annotation = interfaceClass.getAnnotation( annotationClass );
 					System.out.println( annotation );
 					if( annotation != null ) {
@@ -205,7 +205,7 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
 							+ genericBeanDefinition.getBeanClassName() + "' serviceInterface" );
 
 					/**
-					 * ÏÂÃæµÄ´úÂë¾ÍÊÇÏàµ±ÓÚÔÚÅäÖÃÎÄ¼şÀï½øĞĞÕâÑùµÄÅäÖÃ¡£ <bean id = "basicService" class=
+					 * ä¸‹é¢çš„ä»£ç å°±æ˜¯ç›¸å½“äºåœ¨é…ç½®æ–‡ä»¶é‡Œè¿›è¡Œè¿™æ ·çš„é…ç½®ã€‚ <bean id = "basicService" class=
 					 * "example.impl.BasicImpl"/>
 					 * 
 					 * <bean name="/basicHessianService" class=
@@ -217,7 +217,7 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
 					genericBeanDefinition.getPropertyValues().add( "serviceInterface", genericBeanDefinition.getBeanClassName() );
 					String beanNameRef = implClassContextName.get( genericBeanDefinition.getBeanClassName() );
 					genericBeanDefinition.getPropertyValues().add( "service", new RuntimeBeanReference( beanNameRef ) );
-					//ÖØĞÂÉèÖÃBeanClass,½«É¨Ãè½Ó¿ÚµÄBeanClassÌæ»»ÁË.
+					//é‡æ–°è®¾ç½®BeanClass,å°†æ‰«ææ¥å£çš„BeanClassæ›¿æ¢äº†.
 					genericBeanDefinition.setBeanClass( HessianServiceExporter.class );
 					System.out.println( genericBeanDefinition.getBeanClassName() );
 				}
@@ -241,7 +241,7 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
 		}
 
 
-		// ×¢²á¹ıÂËÆ÷-±£Ö¤ÕıÈ·µÄÀà±»É¨Ãè×¢Èë
+		// æ³¨å†Œè¿‡æ»¤å™¨-ä¿è¯æ­£ç¡®çš„ç±»è¢«æ‰«ææ³¨å…¥
 		public void registerFilters() {
 
 			boolean acceptAllInterfaces = true;
@@ -275,7 +275,7 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
 		}
 
 
-		// Ô­·½·¨ÕâÀïÊÇÅĞ¶ÏÊÇ·ñÎª¶¥¼¶ÀàºÍÊÇ·ñÊÇÒÀÀµÀà£¨¼´½Ó¿Ú»á±»ÅÅ³ıµô-ÓÉÓÚÎÒÃÇĞèÒª½«½Ó¿Ú¼Ó½øÀ´£¬ËùÒÔĞèÒª¸²¸Ç¸Ã·½·¨£©
+		// åŸæ–¹æ³•è¿™é‡Œæ˜¯åˆ¤æ–­æ˜¯å¦ä¸ºé¡¶çº§ç±»å’Œæ˜¯å¦æ˜¯ä¾èµ–ç±»ï¼ˆå³æ¥å£ä¼šè¢«æ’é™¤æ‰-ç”±äºæˆ‘ä»¬éœ€è¦å°†æ¥å£åŠ è¿›æ¥ï¼Œæ‰€ä»¥éœ€è¦è¦†ç›–è¯¥æ–¹æ³•ï¼‰
 		@Override
 		protected boolean isCandidateComponent( AnnotatedBeanDefinition beanDefinition ) {
 

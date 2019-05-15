@@ -5,8 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.TYPE)//ÓÃÓÚÃèÊöÀà¡¢½Ó¿Ú»òenumÉùÃ÷  
-@Retention(RetentionPolicy.RUNTIME)//Ê¼ÖÕ²»»á¶ªÆú£¬ÔËĞĞÆÚÒ²±£Áô¸Ã×¢½â£¬Òò´Ë¿ÉÒÔÊ¹ÓÃ·´Éä»úÖÆ¶ÁÈ¡¸Ã×¢½âµÄĞÅÏ¢¡£ÎÒÃÇ×Ô¶¨ÒåµÄ×¢½âÍ¨³£Ê¹ÓÃÕâÖÖ·½Ê½¡£
+@Target(ElementType.TYPE)//ç”¨äºæè¿°ç±»ã€æ¥å£æˆ–enumå£°æ˜  
+@Retention(RetentionPolicy.RUNTIME)//å§‹ç»ˆä¸ä¼šä¸¢å¼ƒï¼Œè¿è¡ŒæœŸä¹Ÿä¿ç•™è¯¥æ³¨è§£ï¼Œå› æ­¤å¯ä»¥ä½¿ç”¨åå°„æœºåˆ¶è¯»å–è¯¥æ³¨è§£çš„ä¿¡æ¯ã€‚æˆ‘ä»¬è‡ªå®šä¹‰çš„æ³¨è§£é€šå¸¸ä½¿ç”¨è¿™ç§æ–¹å¼ã€‚
 public @interface Hession {
 	String description() default "";
 	String uri() default "";
