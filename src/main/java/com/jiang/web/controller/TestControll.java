@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.account.bean.User;
 import com.jiang.service.UserService;
 
 @Controller
@@ -26,5 +27,17 @@ public class TestControll {
 		logger.error( "error log" );
 		userService.login();
 		return "accountBook_server activty1";
+	}
+	@RequestMapping(value="addUser")
+	@ResponseBody
+	public String addUser(User user){
+		try{
+			userService.addUser( user );
+			return "success";
+		}catch (Exception e) {
+			logger.error( e.getMessage(),e );
+			return e.getMessage();
+		}
+		
 	}
 }

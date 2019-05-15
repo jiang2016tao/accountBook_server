@@ -93,7 +93,71 @@
 	    <artifactId>slf4j-log4j12</artifactId>
 	    <version>1.7.25</version>
 	</dependency>
+	<!--mybatis核心包-->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.3.0</version>
+	</dependency>
+	<!--MySQL的JDBC驱动包-->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.29</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.alibaba</groupId>
+	  <artifactId>druid</artifactId>
+	  <version>1.1.16</version>
+	</dependency>
+	<!-- <dependency>
+	  <groupId>org.mybatis</groupId>
+	  <artifactId>mybatis-spring</artifactId>
+	  <version>2.0.1</version>
+	</dependency> -->
+	<dependency>
+	  <groupId>org.singledog</groupId>
+	  <artifactId>mybatis-spring</artifactId>
+	  <version>1.3.3</version>
+	</dependency>
   </dependencies>
+  <profiles>
+  	<profile>
+  		<id>normal</id>
+  		<properties>
+  			<package.environment>normal</package.environment>
+  		</properties>
+  		<activation>
+  			<activeByDefault>true</activeByDefault>
+  		</activation>
+  		<build>
+  			<finalName>accoutBook_server</finalName>
+  			<resources>
+  				<resource>
+  					<directory>src/main/resources</directory>
+  					<includes>
+  						<include>**/*.xml</include>
+  					</includes>
+  					<filtering>false</filtering>
+  				</resource>
+  				<resource>
+  					<directory>src/main/resources</directory>
+  					<includes>
+  						<include>**/*.properties</include>
+  					</includes>
+  					<filtering>false</filtering>
+  				</resource>
+  				<resource>
+  					<directory>src/main/java</directory>
+  					<includes>
+  						<include>**/*.xml</include>
+  					</includes>
+  					<filtering>false</filtering>
+  				</resource>
+  			</resources>
+  		</build>
+  	</profile>
+  </profiles>
   <build>
     <finalName>accoutBook_server</finalName>
   </build>

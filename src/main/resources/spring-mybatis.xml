@@ -15,5 +15,46 @@
                         http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
                         http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop.xsd">
- <context:component-scan base-package="com.jiang.service.impl"></context:component-scan>                       
+ <context:component-scan base-package="com.jiang.service.impl"></context:component-scan>
+ 	<!-- 引入配置文件 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties" />
+    </bean>
+    <bean id="dataSourceOperation" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${jdbc.initialSize}"></property>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${jdbc.maxActive}"></property>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${jdbc.minIdle}"></property>
+        <!-- 超过时间限制是否回收 -->
+        <property name="removeAbandoned" value="true" />
+        <!-- 超时时间；单位为秒。360秒=6分钟 -->
+        <property name="removeAbandonedTimeout" value="360" />
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <property name="logAbandoned" value="true" />
+    </bean>
+    
+    <bean id="sqlSessionFactoryOperation" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceOperation" />      
+        <property name="mapperLocations" value="classpath:com/account/data/*.xml"></property>
+    </bean>
+    
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.account.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryOperation"/>
+    </bean>
+    
+    <bean id="sqlSessionOperation" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionFactoryOperation"/>
+    </bean>
+    
+    <bean id="transactionManagerOperation" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceOperation" />
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManagerOperation" proxy-target-class="true" />
  </beans>
