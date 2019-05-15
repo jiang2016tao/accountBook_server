@@ -461,3 +461,73 @@ org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find clas
 	  <version>2.0.1</version>
 	</dependency>
 ```
+启动tomcat，发现还是有错误信息：
+```java
+Caused by: java.lang.UnsupportedClassVersionError: org/mybatis/spring/SqlSessionFactoryBean : Unsupported major.minor version 52.0 (unable to load class org.mybatis.spring.SqlSessionFactoryBean)
+	at org.apache.catalina.loader.WebappClassLoader.findClassInternal(WebappClassLoader.java:2737)
+	at org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:1124)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1612)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1491)
+```
+这是说使用的版本不是兼容的，即高版本编译的不能在低版本的环境里运行。（还记得当初在海南的项目吗）。  
+解决方法：  
+1.eclipse编译换成jdk1.8的。  
+2.容器运行的环境使用同样的jdk1.8。  
+启动tomcat，还有错误信息：  
+```java
+2019-05-15 00:04:21,080 [main] [org.springframework.web.context.ContextLoader] [ERROR] - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryOperation' defined in class path resource [spring-mybatis.xml]: Initialization of bean failed; nested exception is org.springframework.beans.TypeMismatchException: Failed to convert property value of type 'java.lang.String' to required type 'org.springframework.core.io.Resource[]' for property 'mapperLocations'; nested exception is java.lang.IllegalArgumentException: Could not resolve resource location pattern [classpath:com/account/data/*.xml]: class path resource [com/account/data/] cannot be resolved to URL because it does not exist
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:547)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)
+```
+发现maven打包后，mybatis的sql语句xml文件不再classes里，其实我还一直郁闷spring的一些配置文件也不在，容器是怎么加载的。   
+解决方法是在maven里进行配置：  
+```xml
+<profiles>
+  	<profile>
+  		<id>normal</id>
+  		<properties>
+  			<package.environment>normal</package.environment>
+  		</properties>
+  		<activation>
+  			<activeByDefault>true</activeByDefault>
+  		</activation>
+  		<build>
+  			<finalName>accoutBook_server</finalName>
+  			<resources>
+  				<resource>
+  					<directory>src/main/resources</directory>
+  					<includes>
+  						<include>**/*.xml</include>
+  					</includes>
+  					<filtering>false</filtering>
+  				</resource>
+  				<resource>
+  					<directory>src/main/resources</directory>
+  					<includes>
+  						<include>**/*.properties</include>
+  					</includes>
+  					<filtering>false</filtering>
+  				</resource>
+  				<resource>
+  					<directory>src/main/java</directory>
+  					<includes>
+  						<include>**/*.xml</include>
+  					</includes>
+  					<filtering>false</filtering>
+  				</resource>
+  			</resources>
+  		</build>
+  	</profile>
+  </profiles>
+```
+上面的配置不仅将mybatis的xml，还有resources里的其他已配置也打包进去了。  
+再次启动容器还是报错：  
+```java
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.account.service.UserService com.jiang.web.controller.TestControll.accounUser; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.account.service.UserService] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:508)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+```
+这次是bean的注入问题，检查发现我本来想重新建立一个package来存放service的，但是配置文件里指定了bean的扫描，解决方法是去掉新建 的还是写在原来的package包里。  
+经过这么多问题后，终于可以成功的启动容器了。
