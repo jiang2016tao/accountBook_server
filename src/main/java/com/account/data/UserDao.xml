@@ -4,4 +4,14 @@
 	<insert id="addUser">
 		insert into users(user_name,user_password) values(#{user.userName},#{user.passWord})
 	</insert>
+	<delete id="deleteUser">
+		delete from users where id=#{id}
+	</delete>
+	<select id="findUserByFilter" resultType="com.account.bean.User">
+		select id,user_name as userName,user_password as passWord from users 
+		where user_name=#{user.userName} and user_password=#{user.passWord}
+	</select>
+	<update id="updatePassWord">
+		update users set user_password=#{newPassWord} where id=#{id}
+	</update>
 </mapper>
