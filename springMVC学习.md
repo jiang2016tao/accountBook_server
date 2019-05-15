@@ -387,3 +387,77 @@ public class SpringContext extends XmlWebApplicationContext{
  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
  </listener>
 ```
+# spring与mybatis整合  
+1.添加mysql的jar包  
+```xml
+<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.29</version>
+	</dependency>
+	
+```
+2.添加mybatis的jar包  
+```xml
+<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.3.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.singledog</groupId>
+	  <artifactId>mybatis-spring</artifactId>
+	  <version>1.3.3</version>
+	</dependency>
+```
+3.添加[spring-mybatis.xml配置文件](./src/main/resources/spring-mybatis.xml)  
+完成以上3步，基本上就是完了，但是启动容器却又出现各种报错。
+tomcat启动报错  
+```java
+严重: Error listenerStart
+五月 14, 2019 10:21:49 下午 org.apache.catalina.core.StandardContext start
+严重: Context [/accoutBook_server] startup failed due to previous errors
+五月 14, 2019 10:21:49 下午 org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+严重: The web application [/accoutBook_server] registered the JBDC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+五月 14, 2019 10:21:49 下午 org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+严重: The web application [/accoutBook_server] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.
+五月 14, 2019 10:21:50 下午 org.apache.catalina.startup.HostConfig deployDirectory
+```
+查看错误日志发现是一个包没有引入造成的：
+```java
+2019-05-14 22:21:49,705 [main] [org.springframework.web.context.ContextLoader] [ERROR] - Context initialization failed
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.alibaba.druid.pool.DruidDataSource] for bean with name 'dataSourceOperation' defined in class path resource [spring-mybatis.xml]; nested exception is java.lang.ClassNotFoundException: com.alibaba.druid.pool.DruidDataSource
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1327)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1396)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:959)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:680)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:403)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:306)
+```
+在spring-mybatis.xml配置文件里，我们连接池采用到了阿里的jar包。
+![image](./wikiImg/error1.PNG)
+引入DruidDataSource的jar包
+```xml
+<dependency>
+	  <groupId>com.alibaba</groupId>
+	  <artifactId>druid</artifactId>
+	  <version>1.1.16</version>
+	</dependency>
+```
+发现tomcat启动还是报一样的错误信息。再次查看错误日志，发现还少jar包。
+```java
+2019-05-14 22:51:49,069 [main] [org.springframework.web.context.ContextLoader] [ERROR] - Context initialization failed
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.mybatis.spring.SqlSessionFactoryBean] for bean with name 'sqlSessionFactoryOperation' defined in class path resource [spring-mybatis.xml]; nested exception is java.lang.ClassNotFoundException: org.mybatis.spring.SqlSessionFactoryBean
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1327)
+```
+引入jar包（最开始的时候是没有引入该jar包）：
+```xml
+<dependency>
+	  <groupId>org.mybatis</groupId>
+	  <artifactId>mybatis-spring</artifactId>
+	  <version>2.0.1</version>
+	</dependency>
+```
