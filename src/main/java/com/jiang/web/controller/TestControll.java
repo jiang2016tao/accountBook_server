@@ -28,16 +28,16 @@ public class TestControll {
 		userService.login();
 		return "accountBook_server activty1";
 	}
-	@RequestMapping(value="addUser")
-	@ResponseBody
-	public String addUser(User user){
-		try{
-			userService.addUser( user );
-			return "success";
-		}catch (Exception e) {
-			logger.error( e.getMessage(),e );
-			return e.getMessage();
-		}
-		
-	}
+//	@RequestMapping(value="addUser")
+//	@ResponseBody
+//	public String addUser(User user){
+//		try{
+//			userService.addUser( user );
+//			return "success";
+//		}catch (Exception e) {
+//			logger.error( e.getMessage(),e );
+//			return e.getMessage();
+//		}
+//		
+//	}
 }

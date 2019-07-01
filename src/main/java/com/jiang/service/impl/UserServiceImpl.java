@@ -10,21 +10,21 @@ import com.account.bean.User;
 import com.account.dao.UserDao;
 import com.jiang.service.UserService;
 @Service
-@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+//@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Exception.class)
+//	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Exception.class)
 	public void addUser( User user ) {
 
 		userDao.addUser( user );	
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Exception.class)
+//	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Exception.class)
 	public void deleteUser( Integer id ) {
 
 		if(id==null)
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Exception.class)
+//	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Exception.class)
 	public void updatePassWord( Integer id, String newPassWord ) {
 
 		if(id==null || StringUtils.isEmpty( newPassWord ))

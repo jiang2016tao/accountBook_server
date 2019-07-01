@@ -317,7 +317,22 @@ com.jiang.util.HessianServerScannerConfigurer.HessianClassPathScanner.registerFi
 	</bean>
 ```
 ## 客户端  
-客户端只需要指定好url地址，根据com.caucho.hessian.client.HessianProxyFactory的create创建。可以参考项目中的
+客户端只需要指定好url地址，根据com.caucho.hessian.client.HessianProxyFactory的create创建。可以参考项目中的    
+问题:之前将服务端和客户端都放在一个容器里，采用hessian调用没有问题。最近将服务端和客户端分开在不同的容器里，奇怪的是两个服务，一个可以调通，一个
+不可以。
+```java
+public static void main( String[] args ) {
+		UserService userService=HessianServiceUtil.getUserService();
+//		System.out.println( userService.login());
+		AccountService accountService=HessianServiceUtil.getAccountService();
+		System.out.println( accountService.addAccount() );
+	}
+```
+![image](./wikiImg/hessian_1.PNG)  
+如上图可以看出为注释的是可以调通的。  
+UserService掉不同发现原因是在实现类中，我给类加上了事物注解  
+![image](./wikiImg/hessian_2.PNG)
+
 # spring问题  
 - 在项目中编写了一个这样的类：  
 参考[The type javax.servlet.ServletContext cannot be resolved. It is indirectly referenced from required](https://blog.csdn.net/lurao/article/details/50237253)
