@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.account.dao.AccountInfoDao">
+	<insert id="addAccountInfo">
+		insert into account_info(account_name,parent_id) values(#{accountName},#{parentId})
+	</insert>
+	<delete id="deleteAccountById">
+		delete from account_info where id=#{id}
+	</delete>
+	<update id="updateAccount">
+		update account_info set account_name=#{accountInfo.accountName},
+		parent_id=#{accountInfo.parentId} where id=#{accountInfo.id}
+	</update>
+	<select id="findAccountInfos" resultType="com.account.bean.AccountInfo">
+		select id,account_name as accountName,parent_id as parnetId from account_info where 
+		<trim prefix="where" prefixOverrides="and">
+			<if test="accountInfo.accountName!=null and accountInfo.accountName!=''">
+				and account_name like concat('%',#{accountInfo.accountName},'%')
+			</if>
+			<if test="accountInfo.parentId!=null">
+				and parent_id =#{accountInfo.parentId}
+			</if>
+		</trim>
+	</select>
+</mapper>

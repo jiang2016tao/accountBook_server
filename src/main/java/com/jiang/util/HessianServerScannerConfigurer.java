@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.InitializingBean;
@@ -124,9 +125,9 @@ public class HessianServerScannerConfigurer implements BeanDefinitionRegistryPos
 				System.out.println( "key : " + entry.getKey() );
 				System.out.println( "value : " + entry.getValue().getClass().getName() );
 				// 我们这里还没有使用aop事物管理，因此用下面的代码，后续在更改过来
-				// Class<?>[] interfaces=AopUtils.getTargetClass(
-				// entry.getValue() ).getInterfaces();
-				Class<?>[] interfaces = entry.getValue().getClass().getInterfaces();
+				 Class<?>[] interfaces=AopUtils.getTargetClass(
+				 entry.getValue() ).getInterfaces();
+//				Class<?>[] interfaces = entry.getValue().getClass().getInterfaces();
 
 				for( Class<?> interfaceClass : interfaces ) {
 					System.out.println( interfaceClass.getName() );
