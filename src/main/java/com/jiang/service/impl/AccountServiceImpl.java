@@ -2,6 +2,7 @@ package com.jiang.service.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -11,11 +12,13 @@ import org.springframework.util.StringUtils;
 import com.account.bean.AccountInfo;
 import com.account.dao.AccountInfoDao;
 import com.jiang.service.AccountService;
+import com.jiang.web.controller.TestControll;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class AccountServiceImpl implements AccountService {
 
+	private Logger logger=Logger.getLogger( AccountServiceImpl.class );
 	@Autowired
 	private AccountInfoDao accountInfoDao;
 	
@@ -51,7 +54,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public List<AccountInfo> findAccountInfo( AccountInfo accountInfo ) {
 
-		
+		logger.error( "findAccountInfo" );
 		return accountInfoDao.findAccountInfos( accountInfo );
 			
 	}

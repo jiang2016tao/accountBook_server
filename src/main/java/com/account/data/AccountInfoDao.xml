@@ -12,7 +12,7 @@
 		parent_id=#{accountInfo.parentId} where id=#{accountInfo.id}
 	</update>
 	<select id="findAccountInfos" resultType="com.account.bean.AccountInfo">
-		select id,account_name as accountName,parent_id as parnetId from account_info where 
+		select id,account_name as accountName,parent_id as parnetId from account_info 
 		<trim prefix="where" prefixOverrides="and">
 			<if test="accountInfo.accountName!=null and accountInfo.accountName!=''">
 				and account_name like concat('%',#{accountInfo.accountName},'%')
