@@ -1,0 +1,1 @@
+# @PostConstruct注解失效
