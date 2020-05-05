@@ -11,4 +11,5 @@ public interface AccountInfoDao {
 	void deleteAccountById(@Param("id")Integer id);
 	void updateAccount(@Param("accountInfo")AccountInfo accountInfo);
 	List<AccountInfo> findAccountInfos(@Param("accountInfo")AccountInfo accountInfo);
+	List<AccountInfo> findParentAccount();
 }

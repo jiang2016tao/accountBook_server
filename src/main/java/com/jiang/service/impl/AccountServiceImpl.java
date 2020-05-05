@@ -1,6 +1,8 @@
 package com.jiang.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.util.StringUtils;
 import com.account.bean.AccountInfo;
 import com.account.dao.AccountInfoDao;
 import com.jiang.service.AccountService;
+import com.jiang.util.ListUtil;
 import com.jiang.web.controller.TestControll;
 
 @Service
@@ -22,6 +25,12 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	private AccountInfoDao accountInfoDao;
 	
+	@Override
+	public List<AccountInfo> findParentAccount() {
+
+		return accountInfoDao.findParentAccount();
+	}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Exception.class)
 	public void addAccountInfo( AccountInfo accountInfo ) {
@@ -54,9 +63,19 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public List<AccountInfo> findAccountInfo( AccountInfo accountInfo ) {
 
-		logger.error( "findAccountInfo" );
-		return accountInfoDao.findAccountInfos( accountInfo );
-			
+		List<AccountInfo> accountInfos = accountInfoDao.findAccountInfos( accountInfo );
+		if(ListUtil.isEmpty( accountInfos ))
+			return accountInfos;
+		Map<Integer/*id*/, String/*账户名*/> parentNameMap=new HashMap<Integer, String>();
+		for(AccountInfo a:accountInfos){
+			if(a.getParentId()!=-1)
+				continue;
+			parentNameMap.put( a.getId(), a.getAccountName() );
+		}
+		for(AccountInfo a:accountInfos){
+			a.setParentName( parentNameMap.get( a.getId() ) );
+		}
+		return accountInfos;	
 	}
 
 }

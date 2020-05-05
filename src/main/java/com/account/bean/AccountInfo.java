@@ -12,6 +12,17 @@ public class AccountInfo implements Serializable {
 	private Integer id;
 	private String accountName;
 	private Integer parentId;
+	private String parentName;
+
+	public String getParentName() {
+
+		return parentName;
+	}
+
+	public void setParentName( String parentName ) {
+
+		this.parentName = parentName;
+	}
 	
 	public Integer getId() {
 	

@@ -22,4 +22,7 @@
 			</if>
 		</trim>
 	</select>
+	<select id="findParentAccount" resultType="com.account.bean.AccountInfo">
+		select id,account_name as accountName,parent_id as parentId from account_info where parent_id=-1
+	</select>
 </mapper>
